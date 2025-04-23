@@ -9,7 +9,7 @@ const products = [
         price: "$12.99",
         image: "./src/assets/ProductImages/Maldives Fish Fry Land.png",
         rating: 4.8,
-        category: "Fish",
+        category: "Maldives Fish",
         bestseller: true
     },
     {
@@ -39,7 +39,7 @@ const products = [
         price: "$15.99",
         image: "https://via.placeholder.com/300x200?text=Premium+Fish",
         rating: 4.7,
-        category: "Fish",
+        category: "Maldives Fish",
         bestseller: false
     },
     {
@@ -59,12 +59,12 @@ const products = [
         price: "$9.99",
         image: "https://via.placeholder.com/300x200?text=Rihaakuru",
         rating: 4.4,
-        category: "Fish",
+        category: "Maldives Fish",
         bestseller: true
     },
 ];
 
-const categories = ["All", "Fish", "Condiments", "Pickles"];
+const categories = ["All", "Maldives Fish", "Condiments", "Pickles"];
 
 const Products = () => {
     const [activeCategory, setActiveCategory] = useState("All");

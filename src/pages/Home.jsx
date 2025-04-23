@@ -56,7 +56,7 @@ const Home = () => {
             {/* Hero Section */}
             <section className="relative min-h-[95vh] flex flex-col justify-center items-center text-center px-6">
                 {/* Background with overlay */}
-                <div className="absolute inset-0 bg-[url('https://via.placeholder.com/1920x1080?text=Maldivian+Food')] bg-cover bg-center">
+                <div className="absolute inset-0 bg-[url('/api/placeholder/1920/1080')] bg-cover bg-center">
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-blue-800/70"></div>
                 </div>
 
@@ -66,27 +66,49 @@ const Home = () => {
                     </h1>
 
                     <p className="text-lg md:text-xl text-gray-100 mb-10">
-                        Experience the vibrant taste of the Maldives with <span className="text-green-300 font-semibold">Mubarak Products</span> — crafted with care for homes and restaurants alike.
+                        Experience the vibrant taste of the Maldives with <span
+                        className="text-green-300 font-semibold">Mubarak Products</span> — crafted with care for homes
+                        and restaurants alike.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
+                    <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
                         <Link to="/products">
-                            <button className="bg-green-500 hover:bg-green-600 text-white text-lg px-8 py-4 rounded-full font-medium shadow-lg hover:shadow-xl transition duration-300 w-full">
+                            <button
+                                className="bg-green-500 hover:bg-green-600 text-white text-lg px-8 py-4 rounded-full font-medium shadow-lg hover:shadow-xl transition duration-300 w-full">
                                 Shop Products
                             </button>
                         </Link>
                         <Link to="/about">
-                            <button className="bg-transparent border-2 border-white hover:border-green-300 text-white hover:text-green-300 text-lg px-8 py-4 rounded-full font-medium transition duration-300 w-full">
+                            <button
+                                className="bg-transparent border-2 border-white hover:border-green-300 text-white hover:text-green-300 text-lg px-8 py-4 rounded-full font-medium transition duration-300 w-full">
                                 Learn More
                             </button>
                         </Link>
                     </div>
+
+                    <div className="flex items-center justify-center space-x-6 mt-4">
+                        <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full flex items-center">
+                            <div className="h-3 w-3 bg-green-400 rounded-full mr-2"></div>
+                            <span className="text-white text-sm">Premium Quality</span>
+                        </div>
+                        <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full flex items-center">
+                            <div className="h-3 w-3 bg-green-400 rounded-full mr-2"></div>
+                            <span className="text-white text-sm">100% Halal</span>
+                        </div>
+                        <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full flex items-center">
+                            <div className="h-3 w-3 bg-green-400 rounded-full mr-2"></div>
+                            <span className="text-white text-sm">Island Authentic</span>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Scroll indicator */}
-                <a href="#features" className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                <a href="#features"
+                   className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                              d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
                     </svg>
                 </a>
             </section>
@@ -102,9 +124,11 @@ const Home = () => {
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-10">
-                        <div className="bg-gray-50 rounded-xl p-8 text-center hover:shadow-xl transition duration-300 border border-gray-100">
-                            <div className="bg-blue-100 text-blue-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                                <CheckCircle size={32} />
+                        <div
+                            className="bg-gray-50 rounded-xl p-8 text-center hover:shadow-xl transition duration-300 border border-gray-100">
+                            <div
+                                className="bg-blue-100 text-blue-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                                <CheckCircle size={32}/>
                             </div>
                             <h3 className="text-xl font-bold text-gray-800 mb-3">Premium Quality</h3>
                             <p className="text-gray-600">
@@ -112,9 +136,11 @@ const Home = () => {
                             </p>
                         </div>
 
-                        <div className="bg-gray-50 rounded-xl p-8 text-center hover:shadow-xl transition duration-300 border border-gray-100">
-                            <div className="bg-green-100 text-green-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                                <Heart size={32} />
+                        <div
+                            className="bg-gray-50 rounded-xl p-8 text-center hover:shadow-xl transition duration-300 border border-gray-100">
+                            <div
+                                className="bg-green-100 text-green-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                                <Heart size={32}/>
                             </div>
                             <h3 className="text-xl font-bold text-gray-800 mb-3">Traditional Recipes</h3>
                             <p className="text-gray-600">
@@ -122,9 +148,11 @@ const Home = () => {
                             </p>
                         </div>
 
-                        <div className="bg-gray-50 rounded-xl p-8 text-center hover:shadow-xl transition duration-300 border border-gray-100">
-                            <div className="bg-yellow-100 text-yellow-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                                <Clock size={32} />
+                        <div
+                            className="bg-gray-50 rounded-xl p-8 text-center hover:shadow-xl transition duration-300 border border-gray-100">
+                            <div
+                                className="bg-yellow-100 text-yellow-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                                <Clock size={32}/>
                             </div>
                             <h3 className="text-xl font-bold text-gray-800 mb-3">Fast Delivery</h3>
                             <p className="text-gray-600">
@@ -157,18 +185,19 @@ const Home = () => {
                                         alt={product.name}
                                         className="w-full h-56 object-cover group-hover:scale-105 transition duration-300"
                                     />
-                                    <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                    <div
+                                        className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
                                         {product.price}
                                     </div>
                                 </div>
                                 <div className="p-6">
                                     <div className="flex items-center mb-2">
                                         <div className="flex text-yellow-400">
-                                            <Star className="w-4 h-4 fill-current" />
-                                            <Star className="w-4 h-4 fill-current" />
-                                            <Star className="w-4 h-4 fill-current" />
-                                            <Star className="w-4 h-4 fill-current" />
-                                            <Star className="w-4 h-4 fill-current" />
+                                            <Star className="w-4 h-4 fill-current"/>
+                                            <Star className="w-4 h-4 fill-current"/>
+                                            <Star className="w-4 h-4 fill-current"/>
+                                            <Star className="w-4 h-4 fill-current"/>
+                                            <Star className="w-4 h-4 fill-current"/>
                                         </div>
                                         <span className="text-sm text-gray-500 ml-2">{product.rating}/5</span>
                                     </div>
@@ -179,7 +208,7 @@ const Home = () => {
                                         className="inline-flex items-center text-green-600 font-semibold hover:text-green-700"
                                     >
                                         View Details
-                                        <ArrowRight className="ml-2 w-4 h-4" />
+                                        <ArrowRight className="ml-2 w-4 h-4"/>
                                     </Link>
                                 </div>
                             </div>
@@ -188,9 +217,10 @@ const Home = () => {
 
                     <div className="text-center mt-12">
                         <Link to="/products">
-                            <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-medium inline-flex items-center shadow-lg hover:shadow-xl transition">
+                            <button
+                                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-medium inline-flex items-center shadow-lg hover:shadow-xl transition">
                                 View All Products
-                                <ArrowRight className="ml-2 w-5 h-5" />
+                                <ArrowRight className="ml-2 w-5 h-5"/>
                             </button>
                         </Link>
                     </div>
@@ -209,9 +239,11 @@ const Home = () => {
 
                     <div className="grid md:grid-cols-3 gap-8">
                         {testimonials.map((testimonial) => (
-                            <div key={testimonial.id} className="bg-white/10 backdrop-blur-sm rounded-xl p-8 hover:transform hover:-translate-y-1 transition duration-300">
+                            <div key={testimonial.id}
+                                 className="bg-white/10 backdrop-blur-sm rounded-xl p-8 hover:transform hover:-translate-y-1 transition duration-300">
                                 <div className="flex items-center mb-6">
-                                    <div className="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl">
+                                    <div
+                                        className="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl">
                                         {testimonial.name.charAt(0)}
                                     </div>
                                     <div className="ml-4">
@@ -235,12 +267,14 @@ const Home = () => {
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <Link to="/products">
-                            <button className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-medium shadow-lg hover:shadow-xl transition duration-300 w-full">
+                            <button
+                                className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-medium shadow-lg hover:shadow-xl transition duration-300 w-full">
                                 Shop Now
                             </button>
                         </Link>
                         <Link to="/contact">
-                            <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full font-medium shadow-lg hover:shadow-xl transition duration-300 w-full">
+                            <button
+                                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full font-medium shadow-lg hover:shadow-xl transition duration-300 w-full">
                                 Contact Us
                             </button>
                         </Link>
