@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, ShoppingBag } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import logo from "../assets/ProductImages/logo.png"; // Adjust the path as needed
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -16,8 +17,11 @@ const Navbar = () => {
         <nav className="bg-gradient-to-r from-blue-700 to-blue-600 text-white shadow-lg sticky top-0 z-50">
             <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
                 <Link to="/" className="flex items-center space-x-2 group">
-                    <ShoppingBag className="text-green-300 h-6 w-6 group-hover:text-white transition-colors duration-300" />
-                    <span className="text-2xl font-bold tracking-wide">Mubarak <span className="text-green-300">Products</span></span>
+                    <img
+                        src={logo}
+                        alt="Mubarak Products Logo"
+                        className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                    />
                 </Link>
 
                 <div className="hidden md:flex items-center space-x-8">
@@ -35,7 +39,6 @@ const Navbar = () => {
                     </button>
                 </div>
 
-                {/* Mobile Menu */}
                 <div className="md:hidden">
                     <button
                         onClick={() => setIsOpen(!isOpen)}

@@ -4,30 +4,30 @@ import { ShoppingCart, Filter, ChevronDown, Star } from "lucide-react";
 const products = [
     {
         id: 1,
-        name: "Fried Maldives Fish",
+        name: "Maldives Fish Fry",
         description: "Deliciously spiced and perfectly crispy. Made with authentic Maldivian techniques and premium fish.",
         price: "$12.99",
-        image: "https://via.placeholder.com/300x200?text=Fish+Fry",
+        image: "./src/assets/ProductImages/Maldives Fish Fry Land.png",
         rating: 4.8,
         category: "Fish",
         bestseller: true
     },
     {
         id: 2,
-        name: "Traditional Chutney",
+        name: "Dry Fruit Chutney",
         description: "Authentic flavor with a family recipe passed down through generations. Perfect with rice or bread.",
         price: "$6.99",
-        image: "https://via.placeholder.com/300x200?text=Chutney",
+        image: "./src/assets/ProductImages/Chutney Land1.png",
         rating: 4.5,
         category: "Condiments",
         bestseller: false
     },
     {
         id: 3,
-        name: "Special Achcharu",
+        name: "Achcharu",
         description: "Tangy, spicy, and preserved to perfection. A delightful mix of vegetables in our signature brine.",
         price: "$8.49",
-        image: "https://via.placeholder.com/300x200?text=Achcharu",
+        image: "./src/assets/ProductImages/AchcharuLand.png",
         rating: 4.9,
         category: "Pickles",
         bestseller: true
