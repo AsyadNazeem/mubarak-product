@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { ShoppingCart, Filter, ChevronDown, Star } from "lucide-react";
+import maldivesFish from '../assets/ProductImages/maldives-fish-fry-land.png';
+import chutney from "../assets/ProductImages/chutney-land-new.png";
+import achcharu from "../assets/ProductImages/achcharu-land.png";
 
 const products = [
     {
@@ -7,7 +10,7 @@ const products = [
         name: "Maldives Fish Fry",
         description: "Deliciously spiced and perfectly crispy. Made with authentic Maldivian techniques and premium fish.",
         price: "$12.99",
-        image: "./src/assets/ProductImages/Maldives Fish Fry Land.png",
+        image: maldivesFish,
         rating: 4.8,
         category: "Maldives Fish",
         bestseller: true
@@ -17,7 +20,7 @@ const products = [
         name: "Dry Fruit Chutney",
         description: "Authentic flavor with a family recipe passed down through generations. Perfect with rice or bread.",
         price: "$6.99",
-        image: "./src/assets/ProductImages/Chutney Land1.png",
+        image: chutney,
         rating: 4.5,
         category: "Condiments",
         bestseller: false
@@ -27,7 +30,7 @@ const products = [
         name: "Achcharu",
         description: "Tangy, spicy, and preserved to perfection. A delightful mix of vegetables in our signature brine.",
         price: "$8.49",
-        image: "./src/assets/ProductImages/AchcharuLand.png",
+        image: achcharu,
         rating: 4.9,
         category: "Pickles",
         bestseller: true
