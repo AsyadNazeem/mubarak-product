@@ -54,9 +54,10 @@ const Home = () => {
     return (
         <div className="text-gray-800">
             {/* Hero Section */}
-            <section className="relative min-h-[95vh] flex flex-col justify-center items-center text-center px-6">
+            <section
+                className="relative min-h-[95vh] w-full flex flex-col justify-center items-center text-center overflow-hidden">
                 {/* Background with overlay */}
-                <div className="absolute inset-0 bg-[url('/api/placeholder/1920/1080')] bg-cover bg-center">
+                <div className="absolute inset-0 w-full h-full bg-[url('/api/placeholder/1920/1080')] bg-cover bg-center">
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-blue-800/70"></div>
                 </div>
 
