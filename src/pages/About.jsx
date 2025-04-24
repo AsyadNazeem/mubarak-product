@@ -5,10 +5,10 @@ const About = () => {
     return (
         <div className="bg-gray-50 min-h-screen">
             {/* Hero Banner */}
-            <div className="bg-gradient-to-r from-blue-800 to-blue-600 text-white py-16 px-6">
+            <div className="bg-gradient-to-r from-[#328E6E] to-[#67AE6E] text-white py-16 px-6">
                 <div className="max-w-7xl mx-auto">
                     <h1 className="text-4xl md:text-5xl font-bold mb-4">About Mubarak Products</h1>
-                    <p className="text-lg md:text-xl text-blue-100 max-w-2xl">
+                    <p className="text-lg md:text-xl text-[#E1EEBC] max-w-2xl">
                         A family-owned business delivering authentic Maldivian flavors since 2005.
                     </p>
                 </div>
@@ -18,7 +18,7 @@ const About = () => {
             <div className="max-w-7xl mx-auto px-6 py-16">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div>
-                        <h2 className="text-3xl font-bold text-blue-800 mb-6">Our Story</h2>
+                        <h2 className="text-3xl font-bold text-[#328E6E] mb-6">Our Story</h2>
                         <p className="text-gray-600 mb-4">
                             Mubarak Products began as a small family kitchen operation in Malé, where our founder,
                             Aisha Mubarak, prepared traditional Maldivian fish products using recipes passed down through generations.
@@ -33,12 +33,12 @@ const About = () => {
                             each product still carries the distinctive taste that made our family recipes special.
                         </p>
                     </div>
-                    <div className="bg-blue-50 rounded-xl p-6 shadow-inner">
+                    <div className="bg-[#E1EEBC]/20 rounded-xl p-6 shadow-inner">
                         <div className="bg-white rounded-lg shadow-md p-6 relative">
-                            <div className="absolute -top-6 -left-6 bg-blue-600 rounded-full p-4 shadow-lg">
+                            <div className="absolute -top-6 -left-6 bg-[#328E6E] rounded-full p-4 shadow-lg">
                                 <Anchor size={24} className="text-white" />
                             </div>
-                            <h3 className="text-xl font-semibold text-blue-800 mb-3 mt-2">Our Heritage</h3>
+                            <h3 className="text-xl font-semibold text-[#328E6E] mb-3 mt-2">Our Heritage</h3>
                             <p className="text-gray-600">
                                 Rooted in the rich maritime culture of the Maldives, our products celebrate the
                                 archipelago's deep connection to the ocean and its bounty. Every jar and package
@@ -50,14 +50,14 @@ const About = () => {
             </div>
 
             {/* Values Section */}
-            <div className="bg-gradient-to-br from-blue-50 to-green-50 py-16 px-6">
+            <div className="bg-gradient-to-br from-[#E1EEBC]/20 to-[#90C67C]/20 py-16 px-6">
                 <div className="max-w-7xl mx-auto">
-                    <h2 className="text-3xl font-bold text-blue-800 mb-8 text-center">Our Core Values</h2>
+                    <h2 className="text-3xl font-bold text-[#328E6E] mb-8 text-center">Our Core Values</h2>
 
                     <div className="grid md:grid-cols-3 gap-8">
                         <div className="bg-white p-6 rounded-xl shadow-md text-center">
-                            <div className="bg-red-100 rounded-full p-4 w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                                <Heart size={24} className="text-red-600" />
+                            <div className="bg-[#E1EEBC]/50 rounded-full p-4 w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                                <Heart size={24} className="text-[#328E6E]" />
                             </div>
                             <h3 className="text-xl font-semibold text-gray-800 mb-3">Passion for Tradition</h3>
                             <p className="text-gray-600">
@@ -66,8 +66,8 @@ const About = () => {
                         </div>
 
                         <div className="bg-white p-6 rounded-xl shadow-md text-center">
-                            <div className="bg-blue-100 rounded-full p-4 w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                                <Shell size={24} className="text-blue-600" />
+                            <div className="bg-[#E1EEBC]/50 rounded-full p-4 w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                                <Shell size={24} className="text-[#328E6E]" />
                             </div>
                             <h3 className="text-xl font-semibold text-gray-800 mb-3">Ocean Sustainability</h3>
                             <p className="text-gray-600">
@@ -76,8 +76,8 @@ const About = () => {
                         </div>
 
                         <div className="bg-white p-6 rounded-xl shadow-md text-center">
-                            <div className="bg-yellow-100 rounded-full p-4 w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                                <Award size={24} className="text-yellow-600" />
+                            <div className="bg-[#E1EEBC]/50 rounded-full p-4 w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                                <Award size={24} className="text-[#328E6E]" />
                             </div>
                             <h3 className="text-xl font-semibold text-gray-800 mb-3">Quality Assurance</h3>
                             <p className="text-gray-600">
@@ -91,7 +91,7 @@ const About = () => {
             {/* Our Products Section */}
             <div className="max-w-7xl mx-auto px-6 py-16">
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold text-blue-800 mb-4">Our Premium Products</h2>
+                    <h2 className="text-3xl font-bold text-[#328E6E] mb-4">Our Premium Products</h2>
                     <p className="text-gray-600 max-w-3xl mx-auto">
                         We take pride in our range of authentic Maldivian specialties, prepared with the finest ingredients and traditional methods.
                     </p>
@@ -99,8 +99,8 @@ const About = () => {
 
                 <div className="grid md:grid-cols-3 gap-8">
                     <div className="bg-white rounded-xl shadow-md overflow-hidden">
-                        <div className="h-48 bg-blue-100 flex items-center justify-center">
-                            <Fish size={64} className="text-blue-500" />
+                        <div className="h-48 bg-[#E1EEBC]/30 flex items-center justify-center">
+                            <Fish size={64} className="text-[#328E6E]" />
                         </div>
                         <div className="p-6">
                             <h3 className="text-xl font-semibold text-gray-800 mb-2">Dried Fish Products</h3>
@@ -112,8 +112,8 @@ const About = () => {
                     </div>
 
                     <div className="bg-white rounded-xl shadow-md overflow-hidden">
-                        <div className="h-48 bg-green-100 flex items-center justify-center">
-                            <Leaf size={64} className="text-green-500" />
+                        <div className="h-48 bg-[#E1EEBC]/30 flex items-center justify-center">
+                            <Leaf size={64} className="text-[#67AE6E]" />
                         </div>
                         <div className="p-6">
                             <h3 className="text-xl font-semibold text-gray-800 mb-2">Traditional Chutneys</h3>
@@ -124,8 +124,8 @@ const About = () => {
                     </div>
 
                     <div className="bg-white rounded-xl shadow-md overflow-hidden">
-                        <div className="h-48 bg-yellow-100 flex items-center justify-center">
-                            <div className="text-yellow-500 text-6xl font-bold">A</div>
+                        <div className="h-48 bg-[#E1EEBC]/30 flex items-center justify-center">
+                            <div className="text-[#90C67C] text-6xl font-bold">A</div>
                         </div>
                         <div className="p-6">
                             <h3 className="text-xl font-semibold text-gray-800 mb-2">Achcharu Varieties</h3>
@@ -138,29 +138,29 @@ const About = () => {
             </div>
 
             {/* Team Section */}
-            <div className="bg-blue-800 text-white py-16 px-6">
+            <div className="bg-[#328E6E] text-white py-16 px-6">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl font-bold mb-4">Meet Our Team</h2>
-                        <p className="text-blue-100 max-w-3xl mx-auto">
+                        <p className="text-[#E1EEBC] max-w-3xl mx-auto">
                             Behind every jar of Mubarak Products is a dedicated team committed to excellence.
                         </p>
                     </div>
 
                     <div className="flex justify-center">
-                        <div className="bg-blue-700 rounded-xl shadow-lg p-8 max-w-3xl">
+                        <div className="bg-[#67AE6E] rounded-xl shadow-lg p-8 max-w-3xl">
                             <div className="flex flex-col md:flex-row items-center">
-                                <div className="bg-blue-600 rounded-full p-6 mb-6 md:mb-0 md:mr-8">
+                                <div className="bg-[#90C67C] rounded-full p-6 mb-6 md:mb-0 md:mr-8">
                                     <Users size={48} className="text-white" />
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-semibold mb-4">A Family-Led Enterprise</h3>
-                                    <p className="text-blue-100 mb-4">
+                                    <p className="text-white mb-4">
                                         The Mubarak family continues to lead our company, ensuring that every product meets
                                         the high standards set by our founder. Working alongside them is a team of skilled
                                         food artisans, many of whom have been with us for decades.
                                     </p>
-                                    <p className="text-blue-100">
+                                    <p className="text-[#E1EEBC]">
                                         Together, we form a close-knit community dedicated to sharing the flavors of the
                                         Maldives with the world while preserving our culinary heritage.
                                     </p>
@@ -178,32 +178,32 @@ const About = () => {
                         <div className="grid grid-cols-2 gap-4">
                             <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-center aspect-square">
                                 <div className="text-center">
-                                    <div className="text-blue-600 font-bold text-xl mb-1">HALAL</div>
+                                    <div className="text-[#328E6E] font-bold text-xl mb-1">HALAL</div>
                                     <div className="text-gray-600 text-sm">Certified</div>
                                 </div>
                             </div>
                             <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-center aspect-square">
                                 <div className="text-center">
-                                    <div className="text-green-600 font-bold text-xl mb-1">ISO</div>
+                                    <div className="text-[#67AE6E] font-bold text-xl mb-1">ISO</div>
                                     <div className="text-gray-600 text-sm">22000:2018</div>
                                 </div>
                             </div>
                             <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-center aspect-square">
                                 <div className="text-center">
-                                    <div className="text-yellow-600 font-bold text-xl mb-1">HACCP</div>
+                                    <div className="text-[#90C67C] font-bold text-xl mb-1">HACCP</div>
                                     <div className="text-gray-600 text-sm">Compliant</div>
                                 </div>
                             </div>
                             <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-center aspect-square">
                                 <div className="text-center">
-                                    <div className="text-purple-600 font-bold text-xl mb-1">MFD</div>
+                                    <div className="text-[#328E6E] font-bold text-xl mb-1">MFD</div>
                                     <div className="text-gray-600 text-sm">Approved</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="order-1 md:order-2">
-                        <h2 className="text-3xl font-bold text-blue-800 mb-6">Our Certifications</h2>
+                        <h2 className="text-3xl font-bold text-[#328E6E] mb-6">Our Certifications</h2>
                         <p className="text-gray-600 mb-4">
                             At Mubarak Products, we maintain the highest standards of food safety and quality.
                             Our production facilities have earned key industry certifications, reflecting our
@@ -219,17 +219,17 @@ const About = () => {
             </div>
 
             {/* Call to Action */}
-            <div className="bg-gradient-to-r from-green-600 to-blue-600 text-white py-16 px-6">
+            <div className="bg-gradient-to-r from-[#67AE6E] to-[#328E6E] text-white py-16 px-6">
                 <div className="max-w-5xl mx-auto text-center">
                     <h2 className="text-3xl font-bold mb-6">Taste the Authentic Flavors of the Maldives</h2>
                     <p className="text-lg mb-8 max-w-3xl mx-auto">
                         Experience our premium range of traditional Maldivian products and bring the taste of the islands to your table.
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
-                        <button className="bg-white text-blue-600 hover:bg-blue-50 font-medium px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition">
+                        <button className="bg-white text-[#328E6E] hover:bg-[#E1EEBC] font-medium px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition">
                             Explore Our Products
                         </button>
-                        <button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 font-medium px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition">
+                        <button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#328E6E] font-medium px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition">
                             Contact Us
                         </button>
                     </div>
