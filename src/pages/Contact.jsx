@@ -5,10 +5,10 @@ const Contact = () => {
     return (
         <div className="bg-gray-50 min-h-screen">
             {/* Hero Banner */}
-            <div className="bg-gradient-to-r from-[#328E6E] to-[#67AE6E] text-white py-16 px-6">
+            <div className="bg-gradient-to-r from-[#912923] to-[#D62B31] text-white py-16 px-6">
                 <div className="max-w-7xl mx-auto">
                     <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
-                    <p className="text-lg md:text-xl text-[#E1EEBC] max-w-2xl">
+                    <p className="text-lg md:text-xl text-[#F8E9E0] max-w-2xl">
                         We'd love to hear from you. Get in touch with our friendly team.
                     </p>
                 </div>
@@ -19,11 +19,11 @@ const Contact = () => {
                     {/* Contact Information */}
                     <div className="md:col-span-1">
                         <div className="bg-white rounded-xl shadow-md p-8">
-                            <h2 className="text-2xl font-bold text-[#328E6E] mb-6">Contact Information</h2>
+                            <h2 className="text-2xl font-bold text-[#912923] mb-6">Contact Information</h2>
 
                             <div className="space-y-6">
                                 <div className="flex items-start">
-                                    <div className="bg-[#E1EEBC] text-[#328E6E] rounded-full p-3 mt-1">
+                                    <div className="bg-[#F8E9E0] text-[#912923] rounded-full p-3 mt-1">
                                         <Phone size={20}/>
                                     </div>
                                     <div className="ml-4">
@@ -34,7 +34,7 @@ const Contact = () => {
                                 </div>
 
                                 <div className="flex items-start">
-                                    <div className="bg-[#E1EEBC] text-[#328E6E] rounded-full p-3 mt-1">
+                                    <div className="bg-[#F8E9E0] text-[#912923] rounded-full p-3 mt-1">
                                         <Mail size={20}/>
                                     </div>
                                     <div className="ml-4">
@@ -45,7 +45,7 @@ const Contact = () => {
                                 </div>
 
                                 <div className="flex items-start">
-                                    <div className="bg-[#E1EEBC] text-[#328E6E] rounded-full p-3 mt-1">
+                                    <div className="bg-[#F8E9E0] text-[#912923] rounded-full p-3 mt-1">
                                         <MapPin size={20}/>
                                     </div>
                                     <div className="ml-4">
@@ -58,7 +58,7 @@ const Contact = () => {
                                 </div>
 
                                 <div className="flex items-start">
-                                    <div className="bg-[#E1EEBC] text-[#328E6E] rounded-full p-3 mt-1">
+                                    <div className="bg-[#F8E9E0] text-[#912923] rounded-full p-3 mt-1">
                                         <Clock size={20}/>
                                     </div>
                                     <div className="ml-4">
@@ -73,7 +73,7 @@ const Contact = () => {
                                 <h3 className="font-medium text-gray-800 mb-4">Connect With Us</h3>
                                 <div className="flex space-x-4">
                                     <a href="#"
-                                       className="bg-[#328E6E] hover:bg-[#67AE6E] text-white p-2 rounded-full transition">
+                                       className="bg-[#912923] hover:bg-[#D62B31] text-white p-2 rounded-full transition">
                                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -81,7 +81,7 @@ const Contact = () => {
                                         </svg>
                                     </a>
                                     <a href="#"
-                                       className="bg-[#67AE6E] hover:bg-[#90C67C] text-white p-2 rounded-full transition">
+                                       className="bg-[#D62B31] hover:bg-[#912923] text-white p-2 rounded-full transition">
                                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -89,7 +89,7 @@ const Contact = () => {
                                         </svg>
                                     </a>
                                     <a href="#"
-                                       className="bg-[#90C67C] hover:bg-[#E1EEBC] text-white hover:text-[#328E6E] p-2 rounded-full transition">
+                                       className="bg-[#F8E9E0] hover:bg-[#F8E9E0]/70 text-[#912923] hover:text-[#D62B31] p-2 rounded-full transition">
                                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -104,7 +104,7 @@ const Contact = () => {
                     {/* Contact Form */}
                     <div className="md:col-span-2">
                         <div className="bg-white rounded-xl shadow-md p-8">
-                            <h2 className="text-2xl font-bold text-[#328E6E] mb-6">Send Us a Message</h2>
+                            <h2 className="text-2xl font-bold text-[#912923] mb-6">Send Us a Message</h2>
                             <p className="text-gray-600 mb-8">
                                 Have questions about our products or services? Fill out the form below and our team will
                                 get back to you as soon as possible.
@@ -117,7 +117,7 @@ const Contact = () => {
                                             Name*</label>
                                         <input
                                             type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#328E6E] focus:border-[#328E6E] transition"
+                                            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#912923] focus:border-[#912923] transition"
                                             placeholder="Your Name"
                                             required
                                         />
@@ -128,7 +128,7 @@ const Contact = () => {
                                             Address*</label>
                                         <input
                                             type="email"
-                                            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#328E6E] focus:border-[#328E6E] transition"
+                                            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#912923] focus:border-[#912923] transition"
                                             placeholder="your@email.com"
                                             required
                                         />
@@ -139,7 +139,7 @@ const Contact = () => {
                                     <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
                                     <input
                                         type="tel"
-                                        className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#328E6E] focus:border-[#328E6E] transition"
+                                        className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#912923] focus:border-[#912923] transition"
                                         placeholder="Your Phone Number (Optional)"
                                     />
                                 </div>
@@ -147,7 +147,7 @@ const Contact = () => {
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">Subject*</label>
                                     <select
-                                        className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#328E6E] focus:border-[#328E6E] transition text-gray-700"
+                                        className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#912923] focus:border-[#912923] transition text-gray-700"
                                         required
                                     >
                                         <option value="" disabled selected>Select a subject</option>
@@ -163,7 +163,7 @@ const Contact = () => {
                                     <label className="block text-sm font-medium text-gray-700 mb-2">Message*</label>
                                     <textarea
                                         rows="5"
-                                        className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#328E6E] focus:border-[#328E6E] transition"
+                                        className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#912923] focus:border-[#912923] transition"
                                         placeholder="Your message..."
                                         required
                                     ></textarea>
@@ -171,7 +171,7 @@ const Contact = () => {
 
                                 <div className="flex items-center">
                                     <input type="checkbox" id="newsletter"
-                                           className="h-4 w-4 text-[#67AE6E] border-gray-300 rounded focus:ring-[#67AE6E]"/>
+                                           className="h-4 w-4 text-[#D62B31] border-gray-300 rounded focus:ring-[#D62B31]"/>
                                     <label htmlFor="newsletter" className="ml-2 block text-sm text-gray-700">
                                         Subscribe to our newsletter for promotions and updates
                                     </label>
@@ -180,7 +180,7 @@ const Contact = () => {
                                 <div>
                                     <button
                                         type="submit"
-                                        className="bg-[#67AE6E] hover:bg-[#328E6E] text-white font-medium px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition flex items-center justify-center w-full md:w-auto"
+                                        className="bg-[#D62B31] hover:bg-[#912923] text-white font-medium px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition flex items-center justify-center w-full md:w-auto"
                                     >
                                         Send Message
                                         <Send size={18} className="ml-2"/>
@@ -195,7 +195,7 @@ const Contact = () => {
             {/* Map Section */}
             <div className="bg-white py-16 px-6">
                 <div className="max-w-7xl mx-auto">
-                    <h2 className="text-3xl font-bold text-[#328E6E] mb-10 text-center">Find Us</h2>
+                    <h2 className="text-3xl font-bold text-[#912923] mb-10 text-center">Find Us</h2>
                     <div className="bg-gray-200 h-96 rounded-xl overflow-hidden shadow-md">
                         <iframe
                             title="Mubarak Products Location"
@@ -213,16 +213,16 @@ const Contact = () => {
             </div>
 
             {/* FAQ Section */}
-            <div className="bg-gradient-to-br from-[#E1EEBC] to-[#90C67C] py-16 px-6">
+            <div className="bg-gradient-to-br from-[#F8E9E0] to-[#D62B31]/20 py-16 px-6">
                 <div className="max-w-5xl mx-auto text-center">
-                    <h2 className="text-3xl font-bold text-[#328E6E] mb-4">Frequently Asked Questions</h2>
+                    <h2 className="text-3xl font-bold text-[#912923] mb-4">Frequently Asked Questions</h2>
                     <p className="text-gray-600 mb-12 max-w-3xl mx-auto">
                         Can't find the answer you're looking for? Contact our team for assistance.
                     </p>
 
                     <div className="grid md:grid-cols-2 gap-6 text-left">
                         <div className="bg-white p-6 rounded-xl shadow-md">
-                            <h3 className="font-bold text-lg text-[#328E6E] mb-2">What are your delivery options?</h3>
+                            <h3 className="font-bold text-lg text-[#912923] mb-2">What are your delivery options?</h3>
                             <p className="text-gray-600">
                                 We offer standard and express delivery throughout the Maldives. International shipping
                                 is available for select countries.
@@ -230,7 +230,7 @@ const Contact = () => {
                         </div>
 
                         <div className="bg-white p-6 rounded-xl shadow-md">
-                            <h3 className="font-bold text-lg text-[#328E6E] mb-2">Are your products halal certified?</h3>
+                            <h3 className="font-bold text-lg text-[#912923] mb-2">Are your products halal certified?</h3>
                             <p className="text-gray-600">
                                 Yes, all our products are prepared according to halal standards and have proper
                                 certification.
@@ -238,7 +238,7 @@ const Contact = () => {
                         </div>
 
                         <div className="bg-white p-6 rounded-xl shadow-md">
-                            <h3 className="font-bold text-lg text-[#328E6E] mb-2">Do you offer wholesale pricing?</h3>
+                            <h3 className="font-bold text-lg text-[#912923] mb-2">Do you offer wholesale pricing?</h3>
                             <p className="text-gray-600">
                                 Yes, we provide special pricing for bulk orders and business clients. Please contact our
                                 sales team for details.
@@ -246,7 +246,7 @@ const Contact = () => {
                         </div>
 
                         <div className="bg-white p-6 rounded-xl shadow-md">
-                            <h3 className="font-bold text-lg text-[#328E6E] mb-2">What is the shelf life of your
+                            <h3 className="font-bold text-lg text-[#912923] mb-2">What is the shelf life of your
                                 products?</h3>
                             <p className="text-gray-600">
                                 Most of our products have a shelf life of 6-12 months when stored properly. Check

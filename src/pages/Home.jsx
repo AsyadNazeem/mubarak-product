@@ -4,7 +4,7 @@ import {ArrowRight, Award, Check, CheckCircle, Clock, Heart, Map, Star} from "lu
 import maldivesFish from '../assets/ProductImages/maldives-fish-fry-land.png';
 import chutney from "../assets/ProductImages/chutney-land-new.png";
 import achcharu from "../assets/ProductImages/achcharu-land.png";
-import group from "../assets/ProductImages/group.png";
+import group from "../assets/ProductImages/group-red.png";
 
 const featuredProducts = [
     {
@@ -69,7 +69,7 @@ const Home = () => {
 
                     {/* Gradient overlay - adjusted for better mobile visibility */}
                     <div
-                        className="absolute inset-0 bg-gradient-to-r from-emerald-900/70 to-emerald-900 md:from-transparent md:via-emerald-900/80 md:to-emerald-900"
+                        className="absolute inset-0 bg-gradient-to-r from-[#912923]/70 to-[#912923] md:from-transparent md:via-[#912923]/80 md:to-[#912923]"
                     ></div>
                 </div>
 
@@ -83,18 +83,18 @@ const Home = () => {
 
                         <p className="text-base md:text-lg lg:text-xl text-gray-100 mb-6 md:mb-8">
                             Experience the vibrant taste of the Maldives with{" "}
-                            <span className="text-yellow-200 font-semibold">Mubarak Products</span> —
+                            <span className="text-[#F8E9E0] font-semibold">Mubarak Products</span> —
                             crafted with care for homes and restaurants alike.
                         </p>
 
                         <div
                             className="flex flex-col sm:flex-row justify-center md:justify-start gap-3 md:gap-4 mb-6 md:mb-8">
                             <button
-                                className="bg-green-600 hover:bg-green-700 text-white text-base md:text-lg px-6 md:px-8 py-2 md:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition duration-300">
+                                className="bg-[#D62B31] hover:bg-[#B42028] text-white text-base md:text-lg px-6 md:px-8 py-2 md:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition duration-300">
                                 Shop Products
                             </button>
                             <button
-                                className="bg-transparent border-2 border-white hover:border-yellow-200 text-white hover:text-yellow-200 text-base md:text-lg px-6 md:px-8 py-2 md:py-3 rounded-full font-medium transition duration-300">
+                                className="bg-transparent border-2 border-white hover:border-[#F8E9E0] text-white hover:text-[#F8E9E0] text-base md:text-lg px-6 md:px-8 py-2 md:py-3 rounded-full font-medium transition duration-300">
                                 Learn More
                             </button>
                         </div>
@@ -102,17 +102,17 @@ const Home = () => {
                         <div className="flex flex-wrap justify-center md:justify-start gap-2 md:gap-3 mt-4">
                             <div
                                 className="bg-white/10 backdrop-blur-sm px-3 py-1 md:px-4 md:py-2 rounded-full flex items-center">
-                                <Award size={14} className="text-yellow-200 mr-1 md:mr-2"/>
+                                <Award size={14} className="text-[#F8E9E0] mr-1 md:mr-2"/>
                                 <span className="text-white text-xs md:text-sm">Premium Quality</span>
                             </div>
                             <div
                                 className="bg-white/10 backdrop-blur-sm px-3 py-1 md:px-4 md:py-2 rounded-full flex items-center">
-                                <Check size={14} className="text-yellow-200 mr-1 md:mr-2"/>
+                                <Check size={14} className="text-[#F8E9E0] mr-1 md:mr-2"/>
                                 <span className="text-white text-xs md:text-sm">100% Halal</span>
                             </div>
                             <div
                                 className="bg-white/10 backdrop-blur-sm px-3 py-1 md:px-4 md:py-2 rounded-full flex items-center">
-                                <Map size={14} className="text-yellow-200 mr-1 md:mr-2"/>
+                                <Map size={14} className="text-[#F8E9E0] mr-1 md:mr-2"/>
                                 <span className="text-white text-xs md:text-sm">Island Authentic</span>
                             </div>
                         </div>
@@ -146,7 +146,7 @@ const Home = () => {
                 <section id="features" className="py-20 px-6 bg-white">
                     <div className="max-w-7xl mx-auto">
                         <div className="text-center mb-16">
-                            <h2 className="text-4xl font-bold text-[#328E6E] mb-4">Why Choose Mubarak Products?</h2>
+                            <h2 className="text-4xl font-bold text-[#912923] mb-4">Why Choose Mubarak Products?</h2>
                             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                                 Our commitment to quality, tradition and customer satisfaction sets us apart.
                             </p>
@@ -156,7 +156,7 @@ const Home = () => {
                             <div
                                 className="bg-gray-50 rounded-xl p-8 text-center hover:shadow-xl transition duration-300 border border-gray-100">
                                 <div
-                                    className="bg-[#E1EEBC]/30 text-[#328E6E] rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                                    className="bg-[#F8E9E0]/50 text-[#912923] rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
                                     <CheckCircle size={32}/>
                                 </div>
                                 <h3 className="text-xl font-bold text-gray-800 mb-3">Premium Quality</h3>
@@ -168,7 +168,7 @@ const Home = () => {
                             <div
                                 className="bg-gray-50 rounded-xl p-8 text-center hover:shadow-xl transition duration-300 border border-gray-100">
                                 <div
-                                    className="bg-[#E1EEBC]/30 text-[#328E6E] rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                                    className="bg-[#F8E9E0]/50 text-[#912923] rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
                                     <Heart size={32}/>
                                 </div>
                                 <h3 className="text-xl font-bold text-gray-800 mb-3">Traditional Recipes</h3>
@@ -181,7 +181,7 @@ const Home = () => {
                             <div
                                 className="bg-gray-50 rounded-xl p-8 text-center hover:shadow-xl transition duration-300 border border-gray-100">
                                 <div
-                                    className="bg-[#E1EEBC]/30 text-[#328E6E] rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                                    className="bg-[#F8E9E0]/50 text-[#912923] rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
                                     <Clock size={32}/>
                                 </div>
                                 <h3 className="text-xl font-bold text-gray-800 mb-3">Fast Delivery</h3>
@@ -197,7 +197,7 @@ const Home = () => {
                 <section className="py-20 px-6 bg-gray-50">
                     <div className="max-w-7xl mx-auto">
                         <div className="text-center mb-16">
-                            <h2 className="text-4xl font-bold text-[#328E6E] mb-4">Featured Products</h2>
+                            <h2 className="text-4xl font-bold text-[#912923] mb-4">Featured Products</h2>
                             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
                                 Discover our best-selling products loved by customers all over the world.
                             </p>
@@ -216,13 +216,13 @@ const Home = () => {
                                             className="w-full h-56 object-cover group-hover:scale-105 transition duration-300"
                                         />
                                         <div
-                                            className="absolute top-4 right-4 bg-[#90C67C] text-white px-3 py-1 rounded-full text-sm font-medium">
+                                            className="absolute top-4 right-4 bg-[#D62B31] text-white px-3 py-1 rounded-full text-sm font-medium">
                                             {product.price}
                                         </div>
                                     </div>
                                     <div className="p-6">
                                         <div className="flex items-center mb-2">
-                                            <div className="flex text-yellow-400">
+                                            <div className="flex text-[#D62B31]">
                                                 <Star className="w-4 h-4 fill-current"/>
                                                 <Star className="w-4 h-4 fill-current"/>
                                                 <Star className="w-4 h-4 fill-current"/>
@@ -235,7 +235,7 @@ const Home = () => {
                                         <p className="text-gray-600 mb-4">{product.description}</p>
                                         <Link
                                             to="/products"
-                                            className="inline-flex items-center text-[#328E6E] font-semibold hover:text-[#67AE6E]"
+                                            className="inline-flex items-center text-[#912923] font-semibold hover:text-[#D62B31]"
                                         >
                                             View Details
                                             <ArrowRight className="ml-2 w-4 h-4"/>
@@ -248,7 +248,7 @@ const Home = () => {
                         <div className="text-center mt-12">
                             <Link to="/products">
                                 <button
-                                    className="bg-[#328E6E] hover:bg-[#67AE6E] text-white px-8 py-3 rounded-full font-medium inline-flex items-center shadow-lg hover:shadow-xl transition">
+                                    className="bg-[#912923] hover:bg-[#D62B31] text-white px-8 py-3 rounded-full font-medium inline-flex items-center shadow-lg hover:shadow-xl transition">
                                     View All Products
                                     <ArrowRight className="ml-2 w-5 h-5"/>
                                 </button>
@@ -258,11 +258,11 @@ const Home = () => {
                 </section>
 
                 {/* Testimonials */}
-                <section className="py-20 px-6 bg-gradient-to-br from-[#328E6E] to-[#67AE6E] text-white">
+                <section className="py-20 px-6 bg-gradient-to-br from-[#912923] to-[#D62B31] text-white">
                     <div className="max-w-7xl mx-auto">
                         <div className="text-center mb-16">
                             <h2 className="text-4xl font-bold mb-4">What Our Customers Say</h2>
-                            <p className="text-[#E1EEBC] text-lg max-w-2xl mx-auto">
+                            <p className="text-[#F8E9E0] text-lg max-w-2xl mx-auto">
                                 Don't just take our word for it. Here's what our happy customers have to say.
                             </p>
                         </div>
@@ -273,12 +273,12 @@ const Home = () => {
                                      className="bg-white/10 backdrop-blur-sm rounded-xl p-8 hover:transform hover:-translate-y-1 transition duration-300">
                                     <div className="flex items-center mb-6">
                                         <div
-                                            className="bg-[#90C67C] text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl">
+                                            className="bg-[#D62B31] text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl">
                                             {testimonial.name.charAt(0)}
                                         </div>
                                         <div className="ml-4">
                                             <h4 className="font-semibold">{testimonial.name}</h4>
-                                            <p className="text-[#E1EEBC] text-sm">{testimonial.role}</p>
+                                            <p className="text-[#F8E9E0] text-sm">{testimonial.role}</p>
                                         </div>
                                     </div>
                                     <p className="text-white italic">"{testimonial.text}"</p>
@@ -291,7 +291,7 @@ const Home = () => {
                 {/* CTA Section */}
                 <section className="py-20 px-6 bg-white">
                     <div className="max-w-4xl mx-auto text-center">
-                        <h2 className="text-4xl font-bold text-[#328E6E] mb-6">Ready to Experience Authentic
+                        <h2 className="text-4xl font-bold text-[#912923] mb-6">Ready to Experience Authentic
                             Flavors?</h2>
                         <p className="text-lg text-gray-600 mb-10">
                             Join thousands of satisfied customers and bring the taste of Maldives to your doorstep
@@ -300,13 +300,13 @@ const Home = () => {
                         <div className="flex flex-col sm:flex-row justify-center gap-4">
                             <Link to="/products">
                                 <button
-                                    className="bg-[#90C67C] hover:bg-[#67AE6E] text-white px-8 py-4 rounded-full font-medium shadow-lg hover:shadow-xl transition duration-300 w-full">
+                                    className="bg-[#D62B31] hover:bg-[#B42028] text-white px-8 py-4 rounded-full font-medium shadow-lg hover:shadow-xl transition duration-300 w-full">
                                     Shop Now
                                 </button>
                             </Link>
                             <Link to="/contact">
                                 <button
-                                    className="bg-[#328E6E] hover:bg-[#67AE6E] text-white px-8 py-4 rounded-full font-medium shadow-lg hover:shadow-xl transition duration-300 w-full">
+                                    className="bg-[#912923] hover:bg-[#7A1F1A] text-white px-8 py-4 rounded-full font-medium shadow-lg hover:shadow-xl transition duration-300 w-full">
                                     Contact Us
                                 </button>
                             </Link>

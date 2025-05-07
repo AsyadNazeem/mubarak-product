@@ -80,10 +80,10 @@ const Products = () => {
     return (
         <div className="bg-gray-50 min-h-screen">
             {/* Hero Banner */}
-            <div className="bg-gradient-to-r from-[#328E6E] to-[#67AE6E] text-white py-16 px-6">
+            <div className="bg-gradient-to-r from-[#912923] to-[#D62B31] text-white py-16 px-6">
                 <div className="max-w-7xl mx-auto">
                     <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Products</h1>
-                    <p className="text-lg md:text-xl text-[#E1EEBC] max-w-2xl">
+                    <p className="text-lg md:text-xl text-[#F8E9E0] max-w-2xl">
                         Discover our range of authentic Maldivian delicacies, crafted with care and tradition.
                     </p>
                 </div>
@@ -107,7 +107,7 @@ const Products = () => {
                             className="w-full flex items-center justify-between bg-white p-3 rounded-lg shadow border border-gray-200"
                         >
                             <span className="flex items-center">
-                                <Filter size={18} className="mr-2 text-[#328E6E]" />
+                                <Filter size={18} className="mr-2 text-[#912923]" />
                                 Filter by: {activeCategory}
                             </span>
                             <ChevronDown size={18} className={`transition-transform ${isFilterOpen ? 'rotate-180' : ''}`} />
@@ -123,7 +123,7 @@ const Products = () => {
                                             setIsFilterOpen(false);
                                         }}
                                         className={`block w-full text-left px-4 py-3 hover:bg-gray-50 transition ${
-                                            activeCategory === category ? 'bg-[#E1EEBC]/30 text-[#328E6E] font-medium' : ''
+                                            activeCategory === category ? 'bg-[#F8E9E0]/30 text-[#912923] font-medium' : ''
                                         }`}
                                     >
                                         {category}
@@ -141,7 +141,7 @@ const Products = () => {
                                 onClick={() => setActiveCategory(category)}
                                 className={`px-5 py-2 rounded-full transition ${
                                     activeCategory === category
-                                        ? 'bg-[#328E6E] text-white font-medium'
+                                        ? 'bg-[#912923] text-white font-medium'
                                         : 'hover:bg-gray-100 text-gray-700'
                                 }`}
                             >
@@ -165,18 +165,18 @@ const Products = () => {
                                     className="w-full h-60 object-cover group-hover:scale-105 transition duration-300"
                                 />
                                 {product.bestseller && (
-                                    <div className="absolute top-4 left-4 bg-[#90C67C] text-white px-3 py-1 rounded-full text-sm font-medium">
+                                    <div className="absolute top-4 left-4 bg-[#D62B31] text-white px-3 py-1 rounded-full text-sm font-medium">
                                         Bestseller
                                     </div>
                                 )}
-                                <div className="absolute top-4 right-4 bg-[#328E6E] text-white px-3 py-1 rounded-full text-sm font-medium">
+                                <div className="absolute top-4 right-4 bg-[#912923] text-white px-3 py-1 rounded-full text-sm font-medium">
                                     {product.price}
                                 </div>
                             </div>
 
                             <div className="p-6">
                                 <div className="flex items-center mb-2">
-                                    <div className="flex text-[#90C67C]">
+                                    <div className="flex text-[#D62B31]">
                                         {[...Array(5)].map((_, i) => (
                                             <Star
                                                 key={i}
@@ -193,8 +193,8 @@ const Products = () => {
                                 <p className="text-gray-600 mb-6">{product.description}</p>
 
                                 <div className="flex justify-between items-center">
-                                    <span className="text-[#328E6E] font-medium">{product.category}</span>
-                                    <button className="bg-[#67AE6E] hover:bg-[#328E6E] text-white rounded-full p-3 transition">
+                                    <span className="text-[#912923] font-medium">{product.category}</span>
+                                    <button className="bg-[#D62B31] hover:bg-[#912923] text-white rounded-full p-3 transition">
                                         <ShoppingCart size={18} />
                                     </button>
                                 </div>
@@ -209,7 +209,7 @@ const Products = () => {
                         <p className="text-2xl text-gray-600">No products found in this category.</p>
                         <button
                             onClick={() => setActiveCategory("All")}
-                            className="mt-4 bg-[#328E6E] hover:bg-[#67AE6E] text-white px-6 py-2 rounded-full text-sm"
+                            className="mt-4 bg-[#912923] hover:bg-[#D62B31] text-white px-6 py-2 rounded-full text-sm"
                         >
                             View All Products
                         </button>
@@ -218,13 +218,13 @@ const Products = () => {
             </section>
 
             {/* Call to Action */}
-            <section className="bg-gradient-to-br from-[#E1EEBC]/30 to-[#90C67C]/20 py-16 px-6">
+            <section className="bg-gradient-to-br from-[#F8E9E0]/30 to-[#D62B31]/20 py-16 px-6">
                 <div className="max-w-7xl mx-auto text-center">
-                    <h2 className="text-3xl font-bold text-[#328E6E] mb-6">Can't find what you're looking for?</h2>
+                    <h2 className="text-3xl font-bold text-[#912923] mb-6">Can't find what you're looking for?</h2>
                     <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
                         We regularly update our product selection. Contact us for special orders or bulk purchases.
                     </p>
-                    <button className="bg-[#328E6E] hover:bg-[#67AE6E] text-white px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition">
+                    <button className="bg-[#912923] hover:bg-[#D62B31] text-white px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition">
                         Contact Us
                     </button>
                 </div>
