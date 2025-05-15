@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import CategoryForm from "../admin/CategoryForm.jsx";
 import SubCategoryForm from "../admin/SubCategoryForm.jsx";
 import ProductRegister from "../admin/ProductRegister.jsx";
+import ProductTags from "../admin/ProductTags.jsx";
 
 const AdminDashboard = () => {
     const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -170,6 +171,8 @@ const AdminDashboard = () => {
                 return <SubCategoryForm />;
             case 'products':
                 return <ProductRegister />;
+            case 'product-tags':
+                return <ProductTags />;
             case 'dashboard':
             default:
                 return (
