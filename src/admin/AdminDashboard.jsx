@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Menu, X, Home, Package, ShoppingCart, Users, Settings,
     Bell, ChevronDown, LogOut, User, BarChart3, CreditCard,
     MessageSquare, HelpCircle, ChevronRight, Layers, Tag,
     ListChecks, FileText, PieChart, CreditCard as CardIcon,
-    Calendar, UserPlus, Database, Inbox, BookOpen
+    Calendar, UserPlus, Database, Inbox, BookOpen, Wrench, Key
 } from 'lucide-react';
 import { useAuth } from "../context/AuthContext.jsx";
 import { ADMIN_PATH } from '../context/constants';
@@ -13,6 +13,11 @@ import CategoryForm from "../admin/CategoryForm.jsx";
 import SubCategoryForm from "../admin/SubCategoryForm.jsx";
 import ProductRegister from "../admin/ProductRegister.jsx";
 import ProductTags from "../admin/ProductTags.jsx";
+import CustomerMessages from "../admin/CustomerMessages.jsx";
+import AdminRegisterForm from "../admin/AdminRegisterForm.jsx";
+import Profile from "../admin/Profile.jsx";
+import ChangePassword from "../admin/ChangePassword.jsx";
+import AdminList from "../admin/AdminList.jsx";
 
 const AdminDashboard = () => {
     const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -21,13 +26,10 @@ const AdminDashboard = () => {
     const [expandedItems, setExpandedItems] = useState({});
     // State to track which content to display
     const [activeContent, setActiveContent] = useState('dashboard');
+    const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
-    // Mock admin data
-    const admin = {
-        name: "John Doe",
-        email: "john.doe@example.com",
-        role: "Administrator"
-    };
+    // Get the current user from AuthContext
+    const { admin, logout } = useAuth();
 
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
@@ -62,16 +64,19 @@ const AdminDashboard = () => {
         });
     };
 
-    const { logout } = useAuth();
-
     const navigate = useNavigate();
 
-    const handleLogout = async () => {
+    const handleLogoutClick = () => {
+        setShowLogoutConfirm(true);
+        setProfileDropdownOpen(false); // Close the profile dropdown when showing the confirmation
+    };
+
+// 3. Add the actual logout function that will be called after confirmation
+    const confirmLogout = async () => {
         await logout();
         // Use React Router's navigate to handle path correctly
         navigate(`${ADMIN_PATH}/login`, { replace: true });
     };
-
     // Set active content when clicking on a sidebar item
     const handleContentChange = (contentName) => {
         setActiveContent(contentName);
@@ -94,55 +99,25 @@ const AdminDashboard = () => {
                 { name: 'Sub Categories', icon: <ListChecks size={18} />, contentKey: 'subcategories' },
                 { name: 'Product List', icon: <Package size={18} />, contentKey: 'products' },
                 { name: 'Product Tags', icon: <Tag size={18} />, contentKey: 'product-tags' },
-                { name: 'Inventory', icon: <Database size={18} />, contentKey: 'inventory' }
+                // { name: 'Inventory', icon: <Database size={18} />, contentKey: 'inventory' }
             ]
         },
-        // {
-        //     name: 'Orders',
-        //     icon: <ShoppingCart size={20} />,
-        //     hasSubMenu: true,
-        //     subMenuItems: [
-        //         { name: 'All Orders', icon: <ListChecks size={18} />, contentKey: 'orders' },
-        //         { name: 'Pending', icon: <Calendar size={18} />, contentKey: 'pending-orders' },
-        //         { name: 'Delivered', icon: <ShoppingCart size={18} />, contentKey: 'delivered-orders' },
-        //         { name: 'Returns', icon: <FileText size={18} />, contentKey: 'returns' },
-        //     ]
-        // },
-        // {
-        //     name: 'Customers',
-        //     icon: <Users size={20} />,
-        //     hasSubMenu: true,
-        //     subMenuItems: [
-        //         { name: 'Customer List', icon: <Users size={18} />, contentKey: 'customers' },
-        //         { name: 'Customer Groups', icon: <UserPlus size={18} />, contentKey: 'customer-groups' },
-        //         { name: 'Reviews', icon: <MessageSquare size={18} />, contentKey: 'reviews' },
-        //     ]
-        // },
-        // {
-        //     name: 'Analytics',
-        //     icon: <BarChart3 size={20} />,
-        //     hasSubMenu: true,
-        //     subMenuItems: [
-        //         { name: 'Sales Report', icon: <PieChart size={18} />, contentKey: 'sales-report' },
-        //         { name: 'Traffic', icon: <BarChart3 size={18} />, contentKey: 'traffic' },
-        //         { name: 'Product Performance', icon: <BarChart3 size={18} />, contentKey: 'product-performance' },
-        //     ]
-        // },
-        // {
-        //     name: 'Payments',
-        //     icon: <CreditCard size={20} />,
-        //     hasSubMenu: true,
-        //     subMenuItems: [
-        //         { name: 'Transactions', icon: <CardIcon size={18} />, contentKey: 'transactions' },
-        //         { name: 'Refunds', icon: <CreditCard size={18} />, contentKey: 'refunds' },
-        //         { name: 'Payment Methods', icon: <CreditCard size={18} />, contentKey: 'payment-methods' },
-        //     ]
-        // },
         {
             name: 'Messages',
             icon: <MessageSquare size={20} />,
-            contentKey: 'messages',
-            hasSubMenu: false
+            hasSubMenu: true,
+            subMenuItems: [
+                { name: 'Customer Messages', icon: <Inbox size={18} />, contentKey: 'customer-messages' },
+            ]
+        },
+        {
+            name: 'Maintenance',
+            icon: <Wrench size={20} />,
+            hasSubMenu: true,
+            subMenuItems: [
+                { name: 'Admin Register', icon: <UserPlus size={18} />, contentKey: 'admin-register' },
+                { name: 'Admin List', icon: <UserPlus size={18} />, contentKey: 'admin-list' }
+            ]
         },
         {
             name: 'Support',
@@ -158,7 +133,11 @@ const AdminDashboard = () => {
             name: 'Settings',
             icon: <Settings size={20} />,
             contentKey: 'settings',
-            hasSubMenu: false
+            hasSubMenu: true,
+            subMenuItems: [
+                { name: 'Profile', icon: <User size={18} />, contentKey: 'profile' },
+                { name: 'Change Password', icon: <Key size={18} />, contentKey: 'change-password' }
+            ]
         },
     ];
 
@@ -173,12 +152,22 @@ const AdminDashboard = () => {
                 return <ProductRegister />;
             case 'product-tags':
                 return <ProductTags />;
+            case 'customer-messages':
+                return <CustomerMessages />;
+            case 'admin-register':
+                return <AdminRegisterForm />;
+            case 'admin-list':
+                return <AdminList />;
+            case 'profile':
+                return <Profile />;
+            case 'change-password':
+                return <ChangePassword />;
             case 'dashboard':
             default:
                 return (
                     <>
                         <div className="mb-6">
-                            <h2 className="text-2xl font-bold text-gray-800">Welcome, {admin.name}</h2>
+                            <h2 className="text-2xl font-bold text-gray-800">Welcome, {admin?.name || 'Admin'}</h2>
                             <p className="text-gray-600">Here's what's happening with your store today.</p>
                         </div>
 
@@ -388,7 +377,7 @@ const AdminDashboard = () => {
                         <div className="flex items-center space-x-4">
                             {/* Notifications */}
                             <button className="p-2 rounded-full hover:bg-gray-100 transition relative">
-                                <Bell size={20} />
+                                <Bell size={20} color="black" />
                                 <span className="absolute top-0 right-0 w-4 h-4 bg-[#D62B31] rounded-full text-xs text-white flex items-center justify-center">3</span>
                             </button>
 
@@ -396,31 +385,40 @@ const AdminDashboard = () => {
                             <div className="relative">
                                 <button
                                     onClick={toggleProfileDropdown}
-                                    className="flex items-center space-x-2 p-2 rounded-full hover:bg-gray-100 transition"
+                                    className="flex items-center space-x-2 p-2 rounded-full text-black hover:bg-gray-100 transition"
                                 >
                                     <div className="w-8 h-8 rounded-full bg-[#D62B31] text-white flex items-center justify-center">
                                         {admin?.name?.charAt(0) || 'A'}
                                     </div>
-                                    {admin?.name && <span className="font-medium text-gray-700">{admin.name}</span>}
+                                    {admin?.name && (
+                                        <span className="font-medium text-gray-700">{admin.name}</span>
+                                    )}
                                     <ChevronDown size={16} />
                                 </button>
 
                                 {profileDropdownOpen && (
-                                    <div className="absolute right-0 mt-1 w-48 bg-white rounded-md shadow-lg py-1 z-10 border border-gray-200">
-                                        <a href="#" className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100">
-                                            <User size={16} className="mr-2" />
-                                            Profile
-                                        </a>
-                                        <a href="#" className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100">
-                                            <Settings size={16} className="mr-2" />
-                                            Settings
-                                        </a>
-                                        <hr className="my-1 border-gray-200" />
+                                    <div
+                                        className="absolute right-0 mt-1 w-48 bg-white rounded-md shadow-lg py-1 z-10 border border-gray-200">
                                         <button
-                                            onClick={handleLogout}
+                                            onClick={() => handleContentChange('profile')}
                                             className="flex items-center w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
                                         >
-                                            <LogOut size={16} className="mr-2" />
+                                            <User size={16} className="mr-2"/>
+                                            Profile
+                                        </button>
+                                        <button
+                                            onClick={() => handleContentChange('change-password')}
+                                            className="flex items-center w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+                                        >
+                                            <Settings size={16} className="mr-2"/>
+                                            Change Password
+                                        </button>
+                                        <hr className="my-1 border-gray-200"/>
+                                        <button
+                                            onClick={handleLogoutClick}
+                                            className="flex items-center w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+                                        >
+                                            <LogOut size={16} className="mr-2"/>
                                             Logout
                                         </button>
                                     </div>
@@ -434,6 +432,29 @@ const AdminDashboard = () => {
                 <main className="flex-1 overflow-y-auto p-6">
                     {renderContent()}
                 </main>
+
+                {showLogoutConfirm && (
+                    <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
+                        <div className="bg-white rounded-lg shadow-xl p-6 max-w-sm w-full">
+                            <h3 className="text-lg font-medium text-gray-900 mb-4">Confirm Logout</h3>
+                            <p className="text-gray-600 mb-6">Are you sure you want to logout?</p>
+                            <div className="flex justify-end space-x-4">
+                                <button
+                                    onClick={() => setShowLogoutConfirm(false)}
+                                    className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    onClick={confirmLogout}
+                                    className="px-4 py-2 bg-[#D62B31] text-white rounded-md hover:bg-[#912923]"
+                                >
+                                    Logout
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );

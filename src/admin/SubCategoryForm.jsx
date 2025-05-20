@@ -8,7 +8,7 @@ const SubCategoryForm = () => {
 
     // State for form data
     const [formData, setFormData] = useState({
-        sub_category_id: '', // Changed from subcategory_id to sub_category_id
+        sub_category_id: '',
         name: '',
         category_id: '',
         description: '',
@@ -25,7 +25,7 @@ const SubCategoryForm = () => {
     const [submitSuccess, setSubmitSuccess] = useState(false);
     const [submitMessage, setSubmitMessage] = useState('');
 
-    // State for parent categories (now fetched from API)
+    // State for parent categories
     const [parentCategories, setParentCategories] = useState([]);
     const [loadingCategories, setLoadingCategories] = useState(false);
 
@@ -45,7 +45,6 @@ const SubCategoryForm = () => {
         setLoadingCategories(true);
         try {
             const response = await axios.get('/api/admin/categories');
-            console.log("Parent categories response:", response.data); // <-- Add this
             if (response.data.success) {
                 setParentCategories(response.data.data);
             }
@@ -55,8 +54,6 @@ const SubCategoryForm = () => {
             setLoadingCategories(false);
         }
     };
-
-    console.log(parentCategories); // Check if it has valid data
 
     // Function to generate next subcategory ID from API
     const generateSubCategoryId = async () => {
@@ -113,6 +110,26 @@ const SubCategoryForm = () => {
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
+            // Check file type and size here
+            const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'];
+            const maxSize = 2 * 1024 * 1024; // 2MB
+
+            if (!validTypes.includes(file.type)) {
+                setErrors(prev => ({
+                    ...prev,
+                    image: 'Invalid file type. Please upload JPEG, PNG, JPG or GIF.'
+                }));
+                return;
+            }
+
+            if (file.size > maxSize) {
+                setErrors(prev => ({
+                    ...prev,
+                    image: 'File is too large. Maximum size is 2MB.'
+                }));
+                return;
+            }
+
             // Set the file
             setFormData(prev => ({ ...prev, image: file }));
 
@@ -161,22 +178,29 @@ const SubCategoryForm = () => {
         setSubmitMessage('');
 
         try {
-
             const formDataObj = new FormData();
-            formDataObj.append('sub_category_id', formData.sub_category_id); // Match database column name
+            formDataObj.append('sub_category_id', formData.sub_category_id);
             formDataObj.append('name', formData.name);
             formDataObj.append('category_id', formData.category_id);
             formDataObj.append('description', formData.description);
             formDataObj.append('status', formData.status);
+            formDataObj.append('custom_path', 'src/assets/ProductImages'); // Add the custom path
 
             if (formData.image) {
                 formDataObj.append('image', formData.image);
+                console.log('Image attached to request:', formData.image.name);
             }
 
-            // Submit to API
+            // Log FormData contents for debugging
+            for (let pair of formDataObj.entries()) {
+                console.log(pair[0] + ': ' + pair[1]);
+            }
+
+            // Submit to API with proper headers for multipart form data
             const response = await axios.post('/api/admin/subcategories', formDataObj, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data',
+                    'Accept': 'application/json'
                 }
             });
 
@@ -190,7 +214,7 @@ const SubCategoryForm = () => {
 
                 // Reset form after submission
                 setFormData({
-                    sub_category_id: '', // Changed from subcategory_id to sub_category_id
+                    sub_category_id: '',
                     name: '',
                     category_id: '',
                     description: '',
@@ -210,14 +234,17 @@ const SubCategoryForm = () => {
             }
         } catch (error) {
             console.error('Error submitting form:', error);
+            console.error('Error response:', error.response);
             setSubmitSuccess(false);
 
-            if (error.response && error.response.data && error.response.data.errors) {
-                // Set validation errors from API
-                setErrors(error.response.data.errors);
-                setSubmitMessage('Failed to save subcategory. Please check the form fields.');
+            if (error.response && error.response.data) {
+                if (error.response.data.errors) {
+                    // Set validation errors from API
+                    setErrors(error.response.data.errors);
+                }
+                setSubmitMessage(error.response.data.message || 'Failed to save subcategory. Please check the form fields.');
             } else {
-                setSubmitMessage(error.response?.data?.message || 'Failed to save subcategory. Please try again.');
+                setSubmitMessage('Failed to save subcategory. Please try again.');
             }
         } finally {
             setIsSubmitting(false);
@@ -262,7 +289,7 @@ const SubCategoryForm = () => {
                 </div>
             )}
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Subcategory ID */}
                     <div className="mb-4">
@@ -274,7 +301,7 @@ const SubCategoryForm = () => {
                             id="sub_category_id"
                             name="sub_category_id"
                             value={formData.sub_category_id}
-                            className="w-full p-2 border border-gray-300 rounded-md bg-gray-100"
+                            className="w-full p-2 border text-black border-gray-300 rounded-md bg-gray-100"
                             disabled
                             readOnly
                         />
@@ -284,14 +311,14 @@ const SubCategoryForm = () => {
                     {/* Parent Category */}
                     <div className="mb-4">
                         <label htmlFor="category_id" className="block text-sm font-medium text-gray-700 mb-1">
-                        Parent Category *
+                            Parent Category *
                         </label>
                         <select
                             id="category_id"
                             name="category_id"
                             value={formData.category_id}
                             onChange={handleChange}
-                            className={`w-full p-2 border ${errors.category_id ? 'border-red-500' : 'border-gray-300'} rounded-md`}
+                            className={`w-full p-2 border text-black ${errors.category_id ? 'border-red-500' : 'border-gray-300'} rounded-md`}
                         >
                             <option value="">Select Parent Category</option>
                             {loadingCategories ? (
@@ -320,7 +347,7 @@ const SubCategoryForm = () => {
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
-                            className={`w-full p-2 border ${errors.name ? 'border-red-500' : 'border-gray-300'} rounded-md`}
+                            className={`w-full p-2 border text-black ${errors.name ? 'border-red-500' : 'border-gray-300'} rounded-md`}
                             placeholder="Enter subcategory name"
                         />
                         {errors.name && (
@@ -338,7 +365,7 @@ const SubCategoryForm = () => {
                             name="status"
                             value={formData.status}
                             onChange={handleChange}
-                            className="w-full p-2 border border-gray-300 rounded-md"
+                            className="w-full p-2 border text-black border-gray-300 rounded-md"
                         >
                             <option value="active">Active</option>
                             <option value="inactive">Inactive</option>
@@ -356,7 +383,7 @@ const SubCategoryForm = () => {
                             value={formData.description}
                             onChange={handleChange}
                             rows={4}
-                            className={`w-full p-2 border ${errors.description ? 'border-red-500' : 'border-gray-300'} rounded-md`}
+                            className={`w-full p-2 border text-black ${errors.description ? 'border-red-500' : 'border-gray-300'} rounded-md`}
                             placeholder="Enter subcategory description"
                         ></textarea>
                         {errors.description && (
@@ -461,6 +488,7 @@ const SubCategoryForm = () => {
                                 <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-3">Parent Category</th>
                                 <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-3">Description</th>
                                 <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-3">Status</th>
+                                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-3">Image</th>
                                 <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-3">Created At</th>
                             </tr>
                             </thead>
@@ -480,13 +508,20 @@ const SubCategoryForm = () => {
                                         </span>
                                     </td>
                                     <td className="py-3 text-sm text-gray-700">
+                                        {subCategory.image_path ? (
+                                            <span className="text-blue-600">Image uploaded</span>
+                                        ) : (
+                                            <span className="text-gray-400">No image</span>
+                                        )}
+                                    </td>
+                                    <td className="py-3 text-sm text-gray-700">
                                         {new Date(subCategory.created_at).toLocaleDateString()}
                                     </td>
                                 </tr>
                             ))}
                             {existingSubCategories.length === 0 && (
                                 <tr>
-                                    <td colSpan="6" className="py-4 text-center text-sm text-gray-500">
+                                    <td colSpan="7" className="py-4 text-center text-sm text-gray-500">
                                         No subcategories found in database
                                     </td>
                                 </tr>
@@ -505,6 +540,7 @@ const SubCategoryForm = () => {
                     <p>• Storage: MySQL database</p>
                     <p>• Total Records: {existingSubCategories.length}</p>
                     <p>• Schema: id, sub_category_id, name, category_id, description, status, image_path, created_at, updated_at</p>
+                    <p>• Images stored in: src/assets/ProductImages</p>
                 </div>
             </div>
         </div>

@@ -38,11 +38,21 @@ const CategoryForm = () => {
         try {
             setIsLoading(true);
             const response = await CategoryService.getCategories();
-            if (response && response.categories) {
-                setExistingCategories(response.categories.map(cat => ({
+
+            // Check if response contains the expected data structure
+            if (response && response.data && Array.isArray(response.data)) {
+                // Make sure we're mapping the correct properties
+                const categories = response.data.map(cat => ({
                     categoryId: cat.category_id,
                     name: cat.name
-                })));
+                }));
+
+                setExistingCategories(categories);
+
+                // After setting existing categories, generate the next ID
+                generateNextCategoryId(categories);
+            } else {
+                console.error('Unexpected response format:', response);
             }
         } catch (error) {
             console.error('Failed to fetch categories:', error);
@@ -71,16 +81,34 @@ const CategoryForm = () => {
         }
     }, [existingCategories]);
 
+    const generateNextCategoryId = (categories) => {
+        if (categories && categories.length > 0) {
+            // Find the highest existing ID number
+            const highestId = categories
+                .map(cat => {
+                    // Extract the numeric part of the ID
+                    const match = cat.categoryId.match(/CAT(\d+)/);
+                    return match ? parseInt(match[1], 10) : 0;
+                })
+                .reduce((max, current) => Math.max(max, current), 0);
+
+            // Increment and format with leading zeros
+            const nextNumber = highestId + 1;
+            const nextId = `CAT${String(nextNumber).padStart(4, '0')}`;
+
+            setFormData(prev => ({ ...prev, categoryId: nextId }));
+        } else {
+            // If no categories exist, start with CAT0001
+            setFormData(prev => ({ ...prev, categoryId: 'CAT0001' }));
+        }
+    };
+
     // Handle input changes
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
-
-        // Clear error for this field when user starts typing
-        if (errors[name]) {
-            setErrors(prev => ({ ...prev, [name]: '' }));
-        }
     };
+
 
     // Handle image upload
     const handleImageChange = (e) => {
@@ -222,7 +250,7 @@ const CategoryForm = () => {
                             id="categoryId"
                             name="categoryId"
                             value={formData.categoryId}
-                            className="w-full p-2 border border-gray-300 rounded-md bg-gray-100"
+                            className="w-full p-2 border text-black border-gray-300 rounded-md bg-gray-100"
                             disabled
                             readOnly
                         />
@@ -240,7 +268,7 @@ const CategoryForm = () => {
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
-                            className={`w-full p-2 border ${errors.name ? 'border-red-500' : 'border-gray-300'} rounded-md`}
+                            className={`w-full p-2 border text-black ${errors.name ? 'border-red-500' : 'border-gray-300'} rounded-md`}
                             placeholder="Enter category name"
                         />
                         {errors.name && (
@@ -259,7 +287,7 @@ const CategoryForm = () => {
                             value={formData.description}
                             onChange={handleChange}
                             rows={4}
-                            className={`w-full p-2 border ${errors.description ? 'border-red-500' : 'border-gray-300'} rounded-md`}
+                            className={`w-full p-2 border text-black ${errors.description ? 'border-red-500' : 'border-gray-300'} rounded-md`}
                             placeholder="Enter category description"
                         ></textarea>
                         {errors.description && (
@@ -277,7 +305,7 @@ const CategoryForm = () => {
                             name="status"
                             value={formData.status}
                             onChange={handleChange}
-                            className="w-full p-2 border border-gray-300 rounded-md"
+                            className="w-full p-2 border text-black border-gray-300 rounded-md"
                         >
                             <option value="active">Active</option>
                             <option value="inactive">Inactive</option>
@@ -295,7 +323,7 @@ const CategoryForm = () => {
                                     <img
                                         src={formData.imagePreview}
                                         alt="Category Preview"
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-full text-black object-cover"
                                     />
                                 ) : (
                                     <>

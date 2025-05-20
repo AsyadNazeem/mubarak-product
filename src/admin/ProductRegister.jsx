@@ -638,7 +638,7 @@ const ProductForm = () => {
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
-                            className={`w-full p-2 border ${errors.name ? 'border-red-500' : 'border-gray-300'} rounded-md`}
+                            className={`w-full p-2 border ${errors.name ? 'border-red-500' : 'border-gray-300'} rounded-md text-black`}
                             placeholder="Enter product name"
                         />
                         {errors.name && (
@@ -686,7 +686,7 @@ const ProductForm = () => {
                             value={formData.subCategoryId}
                             onChange={handleChange}
                             disabled={!formData.categoryId || isLoadingSubCategories}
-                            className={`w-full p-2 border ${errors.subCategoryId ? 'border-red-500' : 'border-gray-300'} rounded-md ${!formData.categoryId || isLoadingSubCategories ? 'bg-gray-100' : ''} text-black`}
+                            className={`w-full p-2 border text-black ${errors.subCategoryId ? 'border-red-500' : 'border-gray-300'} rounded-md ${!formData.categoryId || isLoadingSubCategories ? 'bg-gray-100' : ''} text-black`}
                         >
                             <option value="">Select Subcategory</option>
                             {isLoadingSubCategories ? (
@@ -716,7 +716,7 @@ const ProductForm = () => {
                             name="status"
                             value={formData.status}
                             onChange={handleChange}
-                            className="w-full p-2 border border-gray-300 rounded-md"
+                            className="w-full p-2 border text-black border-gray-300 rounded-md"
                         >
                             <option value="active">Active</option>
                             <option value="inactive">Inactive</option>
@@ -740,7 +740,7 @@ const ProductForm = () => {
                                 name="price"
                                 value={formData.price}
                                 onChange={handleChange}
-                                className={`w-full pl-7 p-2 border ${errors.price ? 'border-red-500' : 'border-gray-300'} rounded-md`}
+                                className={`w-full pl-7 p-2 border text-black ${errors.price ? 'border-red-500' : 'border-gray-300'} rounded-md`}
                                 placeholder="0.00"
                             />
                         </div>
@@ -764,7 +764,7 @@ const ProductForm = () => {
                                 name="costPrice"
                                 value={formData.costPrice}
                                 onChange={handleChange}
-                                className="w-full pl-7 p-2 border border-gray-300 rounded-md"
+                                className="w-full pl-7 p-2 border text-black border-gray-300 rounded-md"
                                 placeholder="0.00"
                             />
                         </div>
@@ -781,7 +781,7 @@ const ProductForm = () => {
                             name="stockQuantity"
                             value={formData.stockQuantity}
                             onChange={handleChange}
-                            className={`w-full p-2 border ${errors.stockQuantity ? 'border-red-500' : 'border-gray-300'} rounded-md`}
+                            className={`w-full p-2 border text-black ${errors.stockQuantity ? 'border-red-500' : 'border-gray-300'} rounded-md`}
                             placeholder="0"
                         />
                         {errors.stockQuantity && (
@@ -801,13 +801,13 @@ const ProductForm = () => {
                                 name="sku"
                                 value={formData.sku}
                                 onChange={handleChange}
-                                className="w-full p-2 border border-gray-300 rounded-l-md"
+                                className="w-full p-2 border text-black border-gray-300 rounded-l-md"
                                 placeholder="SKU"
                             />
                             <button
                                 type="button"
                                 onClick={generateSku}
-                                className="bg-gray-200 text-gray-700 px-3 rounded-r-md hover:bg-gray-300 transition"
+                                className="bg-gray-200 text-gray-700 px-3 text-black rounded-r-md hover:bg-gray-300 transition"
                             >
                                 Generate
                             </button>
@@ -825,7 +825,7 @@ const ProductForm = () => {
                             name="barcode"
                             value={formData.barcode}
                             onChange={handleChange}
-                            className="w-full p-2 border border-gray-300 rounded-md"
+                            className="w-full p-2 border text-black border-gray-300 rounded-md"
                             placeholder="Barcode"
                         />
                     </div>
@@ -841,7 +841,7 @@ const ProductForm = () => {
                             name="weight"
                             value={formData.weight}
                             onChange={handleChange}
-                            className="w-full p-2 border border-gray-300 rounded-md"
+                            className="w-full p-2 border text-black border-gray-300 rounded-md"
                             placeholder="0.00"
                         />
                     </div>
@@ -854,7 +854,7 @@ const ProductForm = () => {
                             name="featured"
                             checked={formData.featured}
                             onChange={handleChange}
-                            className="w-4 h-4 text-[#D62B31] border-gray-300 rounded focus:ring-[#D62B31]"
+                            className="w-4 h-4 text-[#D62B31] text-black border-gray-300 rounded focus:ring-[#D62B31]"
                         />
                         <label htmlFor="featured" className="ml-2 block text-sm text-gray-700">
                             Feature this product on homepage
@@ -872,7 +872,7 @@ const ProductForm = () => {
                             value={formData.description}
                             onChange={handleChange}
                             rows={4}
-                            className={`w-full p-2 border ${errors.description ? 'border-red-500' : 'border-gray-300'} rounded-md`}
+                            className={`w-full p-2 border text-black ${errors.description ? 'border-red-500' : 'border-gray-300'} rounded-md`}
                             placeholder="Enter product description"
                         ></textarea>
                         {errors.description && (
@@ -893,13 +893,13 @@ const ProductForm = () => {
                                         <img
                                             src={URL.createObjectURL(image)}
                                             alt={`Product Image ${index + 1}`}
-                                            className="max-h-full max-w-full object-contain"
+                                            className="max-h-full text-black max-w-full object-contain"
                                         />
                                     </div>
                                     <button
                                         type="button"
                                         onClick={() => handleRemoveImage(index)}
-                                        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 shadow-md hover:bg-red-600 transition"
+                                        className="absolute -top-2 -right-2 text-black bg-red-500 text-white rounded-full p-1 shadow-md hover:bg-red-600 transition"
                                     >
                                         <X size={14}/>
                                     </button>
@@ -938,7 +938,7 @@ const ProductForm = () => {
                             <button
                                 type="button"
                                 onClick={addSpecification}
-                                className="flex items-center text-xs text-[#D62B31] hover:text-[#912923] transition"
+                                className="flex items-center text-xs text-black text-[#D62B31] hover:text-[#912923] transition"
                             >
                                 <Plus size={16} className="mr-1"/>
                                 Add Specification
@@ -953,7 +953,7 @@ const ProductForm = () => {
                                         value={spec.key}
                                         onChange={(e) => handleSpecificationChange(index, 'key', e.target.value)}
                                         placeholder="Specification Name"
-                                        className="w-full p-2 border border-gray-300 rounded-md"
+                                        className="w-full p-2 border text-black border-gray-300 rounded-md"
                                     />
                                 </div>
                                 <div className="flex-1">
@@ -962,14 +962,14 @@ const ProductForm = () => {
                                         value={spec.value}
                                         onChange={(e) => handleSpecificationChange(index, 'value', e.target.value)}
                                         placeholder="Specification Value"
-                                        className="w-full p-2 border border-gray-300 rounded-md"
+                                        className="w-full p-2 border text-black border-gray-300 rounded-md"
                                     />
                                 </div>
                                 {index > 0 && (
                                     <button
                                         type="button"
                                         onClick={() => removeSpecification(index)}
-                                        className="p-2 text-gray-500 hover:text-red-500 transition"
+                                        className="p-2 text-gray-500 text-black hover:text-red-500 transition"
                                     >
                                         <Trash2 size={18}/>
                                     </button>
@@ -987,7 +987,7 @@ const ProductForm = () => {
                             <button
                                 type="button"
                                 onClick={addVariant}
-                                className="flex items-center text-xs text-[#D62B31] hover:text-[#912923] transition"
+                                className="flex items-center text-xs text-black text-[#D62B31] hover:text-[#912923] transition"
                             >
                                 <Plus size={16} className="mr-1"/>
                                 Add Variant
@@ -1002,7 +1002,7 @@ const ProductForm = () => {
                                         value={variant.name}
                                         onChange={(e) => handleVariantChange(index, 'name', e.target.value)}
                                         placeholder="Variant Type (e.g. Color, Size)"
-                                        className="w-full p-2 border border-gray-300 rounded-md"
+                                        className="w-full p-2 border text-black border-gray-300 rounded-md"
                                     />
                                 </div>
                                 <div className="flex-1">
@@ -1011,14 +1011,14 @@ const ProductForm = () => {
                                         value={variant.options}
                                         onChange={(e) => handleVariantChange(index, 'options', e.target.value)}
                                         placeholder="Options (comma separated e.g. Red, Blue, Green)"
-                                        className="w-full p-2 border border-gray-300 rounded-md"
+                                        className="w-full p-2 border text-black border-gray-300 rounded-md"
                                     />
                                 </div>
                                 {index > 0 && (
                                     <button
                                         type="button"
                                         onClick={() => removeVariant(index)}
-                                        className="p-2 text-gray-500 hover:text-red-500 transition"
+                                        className="p-2 text-gray-500 text-black hover:text-red-500 transition"
                                     >
                                         <Trash2 size={18}/>
                                     </button>
@@ -1032,7 +1032,7 @@ const ProductForm = () => {
                         <button
                             type="button"
                             onClick={handleClear}
-                            className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 bg-white hover:bg-gray-50 transition flex items-center"
+                            className="px-4 py-2 border border-gray-300 text-black rounded-md text-gray-700 bg-white hover:bg-gray-50 transition flex items-center"
                         >
                             <X size={18} className="mr-2"/>
                             Clear Form
@@ -1040,7 +1040,7 @@ const ProductForm = () => {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="px-4 py-2 bg-[#D62B31] text-white rounded-md hover:bg-[#912923] transition flex items-center"
+                            className="px-4 py-2 bg-[#D62B31] text-white text-black rounded-md hover:bg-[#912923] transition flex items-center"
                         >
                             <Save size={18} className="mr-2"/>
                             {isSubmitting ? 'Saving...' : 'Save Product'}

@@ -1,60 +1,62 @@
-import React from "react";
-import {Link} from "react-router-dom";
-import {ArrowRight, Award, Check, CheckCircle, Clock, Heart, Map, Star} from "lucide-react";
-import maldivesFish from '../assets/ProductImages/maldives-fish-fry-land.png';
-import chutney from "../assets/ProductImages/chutney-land-new.png";
-import achcharu from "../assets/ProductImages/achcharu-land.png";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight, Award, Check, CheckCircle, Clock, Heart, Map, Star } from "lucide-react";
+import axios from "axios"; // Make sure axios is installed
 import group from "../assets/ProductImages/group-red.png";
 
-const featuredProducts = [
-    {
-        id: 1,
-        name: "Spicy Maldives Fish Fry",
-        description: "Authentic Maldivian taste, made with premium dried fish and spices.",
-        image: maldivesFish,
-        price: "$12.99",
-        rating: 4.8,
-    },
-    {
-        id: 2,
-        name: "Traditional Chutney",
-        description: "Made with love using age-old recipes passed through generations.",
-        image: chutney,
-        price: "$9.99",
-        rating: 4.9,
-    },
-    {
-        id: 3,
-        name: "Achcharu Delight",
-        description: "Tangy, spicy, and addictive. A perfect side for any meal.",
-        image: achcharu,
-        price: "$8.99",
-        rating: 4.7,
-    },
-];
-
-const testimonials = [
-    {
-        id: 1,
-        name: "Sarah Johnson",
-        text: "Mubarak's fish fry has changed our family dinners. Authentic taste that takes me back to my visit to the Maldives!",
-        role: "Food Blogger"
-    },
-    {
-        id: 2,
-        name: "Ahmed Hassan",
-        text: "As a restaurant owner, I trust Mubarak Products for consistent quality and authentic flavors that my customers love.",
-        role: "Restaurant Owner"
-    },
-    {
-        id: 3,
-        name: "Leila Patel",
-        text: "Their achcharu is simply the best I've ever had. Perfect balance of flavors and incredibly fresh ingredients.",
-        role: "Home Chef"
-    }
-];
-
 const Home = () => {
+    const [featuredProducts, setFeaturedProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    // Testimonials data (static)
+    const testimonials = [
+        {
+            id: 1,
+            name: "Sarah Johnson",
+            text: "Mubarak's fish fry has changed our family dinners. Authentic taste that takes me back to my visit to the Maldives!",
+            role: "Food Blogger"
+        },
+        {
+            id: 2,
+            name: "Ahmed Hassan",
+            text: "As a restaurant owner, I trust Mubarak Products for consistent quality and authentic flavors that my customers love.",
+            role: "Restaurant Owner"
+        },
+        {
+            id: 3,
+            name: "Leila Patel",
+            text: "Their achcharu is simply the best I've ever had. Perfect balance of flavors and incredibly fresh ingredients.",
+            role: "Home Chef"
+        }
+    ];
+
+    // Fetch featured products from database
+    useEffect(() => {
+        const fetchFeaturedProducts = async () => {
+            setLoading(true);
+            try {
+                const response = await axios.get('/api/v1/products', {
+                    params: { featured: 1 } // Only fetch products where featured = 1
+                });
+
+                if (response.data.status === 'success') {
+                    setFeaturedProducts(response.data.data);
+                } else if (response.data.success === true) {
+                    // Handle alternate response format
+                    setFeaturedProducts(response.data.data);
+                }
+                setLoading(false);
+            } catch (err) {
+                console.error("Error fetching featured products:", err);
+                setError("Failed to load featured products.");
+                setLoading(false);
+            }
+        };
+
+        fetchFeaturedProducts();
+    }, []);
+
     return (
         <div className="text-gray-800">
             {/* Hero Section */}
@@ -203,47 +205,77 @@ const Home = () => {
                             </p>
                         </div>
 
-                        <div className="grid md:grid-cols-3 gap-8">
-                            {featuredProducts.map((product) => (
-                                <div
-                                    key={product.id}
-                                    className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition group"
+                        {/* Loading State */}
+                        {loading && (
+                            <div className="flex justify-center py-12">
+                                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#912923]"></div>
+                            </div>
+                        )}
+
+                        {/* Error State */}
+                        {error && (
+                            <div className="text-center py-12">
+                                <p className="text-xl text-red-600 mb-4">{error}</p>
+                                <button
+                                    onClick={() => window.location.reload()}
+                                    className="bg-[#912923] hover:bg-[#D62B31] text-white px-6 py-2 rounded-full"
                                 >
-                                    <div className="relative">
-                                        <img
-                                            src={product.image}
-                                            alt={product.name}
-                                            className="w-full h-56 object-cover group-hover:scale-105 transition duration-300"
-                                        />
+                                    Retry
+                                </button>
+                            </div>
+                        )}
+
+                        {/* Featured Products Grid */}
+                        {!loading && !error && (
+                            <div className="grid md:grid-cols-3 gap-8">
+                                {featuredProducts.length > 0 ? (
+                                    featuredProducts.map((product) => (
                                         <div
-                                            className="absolute top-4 right-4 bg-[#D62B31] text-white px-3 py-1 rounded-full text-sm font-medium">
-                                            {product.price}
-                                        </div>
-                                    </div>
-                                    <div className="p-6">
-                                        <div className="flex items-center mb-2">
-                                            <div className="flex text-[#D62B31]">
-                                                <Star className="w-4 h-4 fill-current"/>
-                                                <Star className="w-4 h-4 fill-current"/>
-                                                <Star className="w-4 h-4 fill-current"/>
-                                                <Star className="w-4 h-4 fill-current"/>
-                                                <Star className="w-4 h-4 fill-current"/>
-                                            </div>
-                                            <span className="text-sm text-gray-500 ml-2">{product.rating}/5</span>
-                                        </div>
-                                        <h3 className="text-xl font-semibold text-gray-800 mb-2">{product.name}</h3>
-                                        <p className="text-gray-600 mb-4">{product.description}</p>
-                                        <Link
-                                            to="/products"
-                                            className="inline-flex items-center text-[#912923] font-semibold hover:text-[#D62B31]"
+                                            key={product.id}
+                                            className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition group"
                                         >
-                                            View Details
-                                            <ArrowRight className="ml-2 w-4 h-4"/>
-                                        </Link>
+                                            <div className="relative">
+                                                <img
+                                                    src={product.image}
+                                                    alt={product.name}
+                                                    className="w-full h-56 object-cover group-hover:scale-105 transition duration-300"
+                                                />
+                                                <div
+                                                    className="absolute top-4 right-4 bg-[#D62B31] text-white px-3 py-1 rounded-full text-sm font-medium">
+                                                    {product.price}
+                                                </div>
+                                            </div>
+                                            <div className="p-6">
+                                                <div className="flex items-center mb-2">
+                                                    <div className="flex text-[#D62B31]">
+                                                        {[...Array(5)].map((_, i) => (
+                                                            <Star
+                                                                key={i}
+                                                                className={`w-4 h-4 ${i < Math.floor(product.rating) ? 'fill-current' : ''}`}
+                                                            />
+                                                        ))}
+                                                    </div>
+                                                    <span className="text-sm text-gray-500 ml-2">{product.rating}/5</span>
+                                                </div>
+                                                <h3 className="text-xl font-semibold text-gray-800 mb-2">{product.name}</h3>
+                                                <p className="text-gray-600 mb-4">{product.description}</p>
+                                                <Link
+                                                    to={`/products/${product.id}`}
+                                                    className="inline-flex items-center text-[#912923] font-semibold hover:text-[#D62B31]"
+                                                >
+                                                    View Details
+                                                    <ArrowRight className="ml-2 w-4 h-4"/>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <div className="col-span-3 text-center py-12">
+                                        <p className="text-xl text-gray-600">No featured products available at the moment.</p>
                                     </div>
-                                </div>
-                            ))}
-                        </div>
+                                )}
+                            </div>
+                        )}
 
                         <div className="text-center mt-12">
                             <Link to="/products">

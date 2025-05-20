@@ -1,7 +1,139 @@
-import React from "react";
-import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
+import React, { useState } from "react";
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from "lucide-react";
+import axios from "axios"; // Make sure to import axios
 
 const Contact = () => {
+    // Form state
+    const [formData, setFormData] = useState({
+        fullName: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+        newsletter: false
+    });
+
+    // Form submission states
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(null);
+
+    // Form validation
+    const [errors, setErrors] = useState({});
+
+    // Handle input changes
+    const handleChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        setFormData({
+            ...formData,
+            [name]: type === "checkbox" ? checked : value
+        });
+
+        // Clear error when field is edited
+        if (errors[name]) {
+            setErrors({
+                ...errors,
+                [name]: null
+            });
+        }
+    };
+
+    // Validate form
+    const validateForm = () => {
+        const newErrors = {};
+
+        if (!formData.fullName.trim()) {
+            newErrors.fullName = "Name is required";
+        }
+
+        if (!formData.email.trim()) {
+            newErrors.email = "Email is required";
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+            newErrors.email = "Email address is invalid";
+        }
+
+        if (!formData.subject) {
+            newErrors.subject = "Please select a subject";
+        }
+
+        if (!formData.message.trim()) {
+            newErrors.message = "Message is required";
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    // Handle form submission
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        // Validate form
+        if (!validateForm()) {
+            return;
+        }
+
+        setLoading(true);
+        setError(null);
+
+        try {
+            // Connect to Laravel API endpoint
+            const response = await axios.post("/api/contact", formData, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                }
+            });
+
+            if (response.status === 201) {
+                // Show success message
+                setSuccess(true);
+
+                // Reset form after successful submission
+                setFormData({
+                    fullName: "",
+                    email: "",
+                    phone: "",
+                    subject: "",
+                    message: "",
+                    newsletter: false
+                });
+
+                // Clear success message after 5 seconds
+                setTimeout(() => {
+                    setSuccess(false);
+                }, 5000);
+            } else {
+                throw new Error("Unexpected response from server");
+            }
+        } catch (err) {
+            console.error("Form submission error:", err);
+
+            // Handle validation errors from Laravel
+            if (err.response && err.response.status === 422) {
+                const serverErrors = err.response.data.errors;
+                const fieldErrors = {};
+
+                // Map server validation errors to form fields
+                Object.keys(serverErrors).forEach(key => {
+                    // Map server field names to component field names (if needed)
+                    let fieldName = key;
+                    if (key === 'full_name') fieldName = 'fullName';
+
+                    fieldErrors[fieldName] = serverErrors[key][0];
+                });
+
+                setErrors({...errors, ...fieldErrors});
+                setError("Please correct the errors in the form");
+            } else {
+                setError(err.response?.data?.message || "Something went wrong. Please try again later.");
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Rest of your Contact component remains the same
     return (
         <div className="bg-gray-50 min-h-screen">
             {/* Hero Banner */}
@@ -110,83 +242,144 @@ const Contact = () => {
                                 get back to you as soon as possible.
                             </p>
 
-                            <form className="space-y-6">
-                                <div className="grid md:grid-cols-2 gap-6">
+                            {success ? (
+                                <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
+                                    <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                                    <h3 className="text-xl font-medium text-green-800 mb-2">Message Sent Successfully!</h3>
+                                    <p className="text-green-700">
+                                        Thank you for reaching out to us. We've received your message and will get back to you shortly.
+                                    </p>
+                                </div>
+                            ) : (
+                                <form className="space-y-6" onSubmit={handleSubmit}>
+                                    <div className="grid md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
+                                                Full Name*
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="fullName"
+                                                name="fullName"
+                                                value={formData.fullName}
+                                                onChange={handleChange}
+                                                className={`w-full border text-black ${errors.fullName ? 'border-red-500' : 'border-gray-300'} rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#912923] focus:border-[#912923] transition`}
+                                                placeholder="Your Name"
+                                            />
+                                            {errors.fullName && (
+                                                <p className="mt-1 text-sm text-red-600">{errors.fullName}</p>
+                                            )}
+                                        </div>
+
+                                        <div>
+                                            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                                                Email Address*
+                                            </label>
+                                            <input
+                                                type="email"
+                                                id="email"
+                                                name="email"
+                                                value={formData.email}
+                                                onChange={handleChange}
+                                                className={`w-full border text-black ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#912923] focus:border-[#912923] transition`}
+                                                placeholder="your@email.com"
+                                            />
+                                            {errors.email && (
+                                                <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+                                            )}
+                                        </div>
+                                    </div>
+
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">Full
-                                            Name*</label>
+                                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                                            Phone Number
+                                        </label>
                                         <input
-                                            type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#912923] focus:border-[#912923] transition"
-                                            placeholder="Your Name"
-                                            required
+                                            type="tel"
+                                            id="phone"
+                                            name="phone"
+                                            value={formData.phone}
+                                            onChange={handleChange}
+                                            className="w-full border text-black border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#912923] focus:border-[#912923] transition"
+                                            placeholder="Your Phone Number (Optional)"
                                         />
                                     </div>
 
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">Email
-                                            Address*</label>
-                                        <input
-                                            type="email"
-                                            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#912923] focus:border-[#912923] transition"
-                                            placeholder="your@email.com"
-                                            required
-                                        />
+                                        <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                                            Subject*
+                                        </label>
+                                        <select
+                                            id="subject"
+                                            name="subject"
+                                            value={formData.subject}
+                                            onChange={handleChange}
+                                            className={`w-full border text-black ${errors.subject ? 'border-red-500' : 'border-gray-300'} rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#912923] focus:border-[#912923] transition text-gray-700`}
+                                        >
+                                            <option value="" disabled>Select a subject</option>
+                                            <option value="general">General Inquiry</option>
+                                            <option value="products">Product Information</option>
+                                            <option value="orders">Order Status</option>
+                                            <option value="wholesale">Wholesale Opportunities</option>
+                                            <option value="feedback">Feedback</option>
+                                        </select>
+                                        {errors.subject && (
+                                            <p className="mt-1 text-sm text-red-600">{errors.subject}</p>
+                                        )}
                                     </div>
-                                </div>
 
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                                    <input
-                                        type="tel"
-                                        className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#912923] focus:border-[#912923] transition"
-                                        placeholder="Your Phone Number (Optional)"
-                                    />
-                                </div>
+                                    <div>
+                                        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                                            Message*
+                                        </label>
+                                        <textarea
+                                            id="message"
+                                            name="message"
+                                            value={formData.message}
+                                            onChange={handleChange}
+                                            rows="5"
+                                            className={`w-full border text-black ${errors.message ? 'border-red-500' : 'border-gray-300'} rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#912923] focus:border-[#912923] transition`}
+                                            placeholder="Your message..."
+                                        ></textarea>
+                                        {errors.message && (
+                                            <p className="mt-1 text-sm text-red-600">{errors.message}</p>
+                                        )}
+                                    </div>
 
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Subject*</label>
-                                    <select
-                                        className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#912923] focus:border-[#912923] transition text-gray-700"
-                                        required
-                                    >
-                                        <option value="" disabled selected>Select a subject</option>
-                                        <option value="general">General Inquiry</option>
-                                        <option value="products">Product Information</option>
-                                        <option value="orders">Order Status</option>
-                                        <option value="wholesale">Wholesale Opportunities</option>
-                                        <option value="feedback">Feedback</option>
-                                    </select>
-                                </div>
+                                    <div className="flex items-center">
+                                        <input
+                                            type="checkbox"
+                                            id="newsletter"
+                                            name="newsletter"
+                                            checked={formData.newsletter}
+                                            onChange={handleChange}
+                                            className="h-4 w-4 text-[#D62B31] text-black border-gray-300 rounded focus:ring-[#D62B31]"
+                                        />
+                                        <label htmlFor="newsletter" className="ml-2 block text-sm text-gray-700">
+                                            Subscribe to our newsletter for promotions and updates
+                                        </label>
+                                    </div>
 
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Message*</label>
-                                    <textarea
-                                        rows="5"
-                                        className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#912923] focus:border-[#912923] transition"
-                                        placeholder="Your message..."
-                                        required
-                                    ></textarea>
-                                </div>
+                                    {error && (
+                                        <div className="bg-red-50 border border-red-200 rounded p-4 text-red-800">
+                                            <p>{error}</p>
+                                        </div>
+                                    )}
 
-                                <div className="flex items-center">
-                                    <input type="checkbox" id="newsletter"
-                                           className="h-4 w-4 text-[#D62B31] border-gray-300 rounded focus:ring-[#D62B31]"/>
-                                    <label htmlFor="newsletter" className="ml-2 block text-sm text-gray-700">
-                                        Subscribe to our newsletter for promotions and updates
-                                    </label>
-                                </div>
-
-                                <div>
-                                    <button
-                                        type="submit"
-                                        className="bg-[#D62B31] hover:bg-[#912923] text-white font-medium px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition flex items-center justify-center w-full md:w-auto"
-                                    >
-                                        Send Message
-                                        <Send size={18} className="ml-2"/>
-                                    </button>
-                                </div>
-                            </form>
+                                    <div>
+                                        <button
+                                            type="submit"
+                                            disabled={loading}
+                                            className={`${
+                                                loading ? 'bg-gray-400' : 'bg-[#D62B31] hover:bg-[#912923]'
+                                            } text-white font-medium px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition flex items-center justify-center w-full md:w-auto`}
+                                        >
+                                            {loading ? 'Sending...' : 'Send Message'}
+                                            {!loading && <Send size={18} className="ml-2" />}
+                                        </button>
+                                    </div>
+                                </form>
+                            )}
                         </div>
                     </div>
                 </div>
